@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getCoins } from "../apis/crypto-api";
+import { percentChangeApi } from "../apis/percentChange-api";
 import MoveToTop from "./MoveToTop";
 import RenderCoins from "./RenderCoins";
-import useSortCoins from "../hooks/useSortCoins";
 import UpdateLimit from "./UpdateLimit";
+import Filters from "./Filters";
+import Search from "./Search";
+import RenderManyCharts from "./RenderManyCharts";
 
 export default function Home() {
   // State for the main list of coins
@@ -18,15 +21,8 @@ export default function Home() {
   // state to declare the limit of coins to be displayed
   const [limit, setLimit] = useState(50);
 
-  // Destructuring the sorting functions from the custom hook
-  const {
-    handleSortingByUsdPriseIncreasing,
-    handleSortingByUsdPriseDecreasing,
-    handleSortByName,
-    handleSortByPriceChange24hIncreasing,
-    handleSortByPriceChange24hDecreasing,
-    handleSortByPopularity,
-  } = useSortCoins({ coins, setCoins, coinsCopy });
+  // state to store the data for the chart
+  const [chartData, setChartData] = useState("");
 
   useEffect(() => {
     // Fetch coins data from the API on component mount
@@ -36,33 +32,20 @@ export default function Home() {
       // Set the copy of coins for later use (resetting to original order)
       setCoinsCopy(result);
     });
+    // Fetch chart data from the API on component mount
+    percentChangeApi().then((result) => {
+      setChartData(result);
+    });
   }, []);
 
   return (
     <div>
-      {/* Input for searching */}
-      <input
-        className="inputSearch"
-        placeholder="Search for a coin..."
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-        type="text"
-      />
-      {/* Buttons for sorting */}
-      <button onClick={handleSortingByUsdPriseIncreasing}>
-        sort usd prise Increasing
-      </button>
-      <button onClick={handleSortingByUsdPriseDecreasing}>
-        sort usd prise Decreasing
-      </button>
-      <button onClick={handleSortByName}>sort by name</button>
-      <button onClick={handleSortByPriceChange24hIncreasing}>
-        sort by 24h Increasing
-      </button>
-      <button onClick={handleSortByPriceChange24hDecreasing}>
-        sort by 24h Decreasing
-      </button>
-      <button onClick={handleSortByPopularity}>sort by Popularity</button>
+      {/* Component to search for a coin */}
+      <Search searchInput={searchInput} setSearchInput={setSearchInput} />
+      {/* Component to render the chart */}
+      <RenderManyCharts chartData={chartData} />
+      {/* Component to filter the coins based on the current state */}
+      <Filters coins={coins} setCoins={setCoins} coinsCopy={coinsCopy} />
       {/* Component to render the coins based on the current state */}
       <RenderCoins limit={limit} coins={coins} searchInput={searchInput} />
       {/* Component to update the limit */}
