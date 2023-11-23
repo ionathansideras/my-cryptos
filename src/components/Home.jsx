@@ -6,7 +6,6 @@ import RenderCoins from "./RenderCoins";
 import UpdateLimit from "./UpdateLimit";
 import Filters from "./Filters";
 import Search from "./Search";
-import RenderManyCharts from "./RenderManyCharts";
 
 export default function Home() {
   // State for the main list of coins
@@ -19,22 +18,21 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState("");
 
   // state to declare the limit of coins to be displayed
-  const [limit, setLimit] = useState(50);
-
-  // state to store the data for the chart
-  const [chartData, setChartData] = useState("");
+  const [limit, setLimit] = useState(20);
 
   useEffect(() => {
     // Fetch coins data from the API on component mount
-    getCoins().then((result) => {
-      // Set the main coins state
-      setCoins(result);
-      // Set the copy of coins for later use (resetting to original order)
-      setCoinsCopy(result);
-    });
-    // Fetch chart data from the API on component mount
-    percentChangeApi().then((result) => {
-      setChartData(result);
+    getCoins().then((resultCoins) => {
+      percentChangeApi().then((resultPercent) => {
+        // Create a new array with modified objects
+        const updatedTest = resultPercent.map((coin, index) => ({
+          ...coin,
+          coin_price: resultCoins[index].coin_price,
+        }));
+        // Update the test state with the new array
+        setCoins(updatedTest);
+        setCoinsCopy(updatedTest);
+      });
     });
   }, []);
 
@@ -42,8 +40,6 @@ export default function Home() {
     <div>
       {/* Component to search for a coin */}
       <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-      {/* Component to render the chart */}
-      <RenderManyCharts chartData={chartData} />
       {/* Component to filter the coins based on the current state */}
       <Filters coins={coins} setCoins={setCoins} coinsCopy={coinsCopy} />
       {/* Component to render the coins based on the current state */}

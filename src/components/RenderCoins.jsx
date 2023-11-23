@@ -1,3 +1,4 @@
+import RenderManyCharts from "./RenderManyCharts";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({ limit, coins, searchInput }) {
@@ -24,9 +25,8 @@ export default function RenderCoins({ limit, coins, searchInput }) {
             <th>Name</th>
             <th>Symbol</th>
             <th>Price usd</th>
-            <th>Market cap usd</th>
-            <th>c supply</th>
-            <th>Price change 24h</th>
+            <th>Percent change 15min</th>
+            <th>Percent change 5min</th>
           </tr>
         </thead>
         <tbody>
@@ -35,12 +35,14 @@ export default function RenderCoins({ limit, coins, searchInput }) {
               // Conditional rendering to limit based on the index
               index <= limit && (
                 <tr className="coin" key={coin.id}>
-                  <td>{coin.name}</td>
-                  <td>{coin.symbol}</td>
-                  <td>{coin.price_usd}</td>
-                  <td>{coin.market_cap_usd}</td>
-                  <td>{coin.csupply}</td>
-                  <td>{coin.percent_change_24h}</td>
+                  <td>{coin.coin_name}</td>
+                  <td>{coin.coin_symbol}</td>
+                  <td>{coin.coin_price.toFixed(7)}</td>
+                  <td>{coin.percent_change_15min}</td>
+                  <td>{coin.percent_change_5min}</td>
+                  <td>
+                    <RenderManyCharts chartData={coin} />
+                  </td>
                 </tr>
               )
           )}
@@ -56,8 +58,8 @@ export default function RenderCoins({ limit, coins, searchInput }) {
         // Display all coins if search input is empty
         searchInput === "" ||
         // Filter coins by name or symbol, case-insensitive
-        val.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-        val.symbol.toLowerCase().includes(searchInput.toLowerCase())
+        val.coin_name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        val.coin_symbol.toLowerCase().includes(searchInput.toLowerCase())
     );
   };
 

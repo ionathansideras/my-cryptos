@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-
+import React, { useEffect, useRef } from "react";
 // Functional component CreateChart that renders a Chart.js chart
 const CreateChart = ({ name, data, labels }) => {
   // Create a reference to the chart canvas element

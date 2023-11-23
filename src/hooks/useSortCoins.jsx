@@ -4,7 +4,7 @@ export default function useSortCoins({ coins, setCoins, coinsCopy }) {
   const handleSortingByUsdPriseIncreasing = () => {
     // Create a shallow copy of the coins array and sort it based on USD price in increasing order
     const sortedCoins = [...coins].sort((a, b) => {
-      return a.price_usd - b.price_usd;
+      return a.coin_price - b.coin_price;
     });
     // Update the state with the sorted array
     setCoins(sortedCoins);
@@ -14,7 +14,7 @@ export default function useSortCoins({ coins, setCoins, coinsCopy }) {
   const handleSortingByUsdPriseDecreasing = () => {
     // Create a shallow copy of the coins array and sort it based on USD price in decreasing order
     const sortedCoins = [...coins].sort((a, b) => {
-      return b.price_usd - a.price_usd;
+      return b.coin_price - a.coin_price;
     });
     // Update the state with the sorted array
     setCoins(sortedCoins);
@@ -24,27 +24,27 @@ export default function useSortCoins({ coins, setCoins, coinsCopy }) {
   const handleSortByName = () => {
     // Create a shallow copy of the coins array and sort it based on the coin names
     const sortedCoins = [...coins].sort((a, b) => {
-      return a.name.localeCompare(b.name);
+      return a.coin_name.localeCompare(b.coin_name);
     });
     // Update the state with the sorted array
     setCoins(sortedCoins);
   };
 
   // Function to handle sorting by 24-hour price change in increasing order
-  const handleSortByPriceChange24hIncreasing = () => {
+  const handleSortByPriceChange5MinIncreasing = () => {
     // Create a shallow copy of the coins array and sort it based on 24-hour price change in increasing order
     const sortedCoins = [...coins].sort((a, b) => {
-      return b.percent_change_24h - a.percent_change_24h;
+      return b.percent_change_5min - a.percent_change_5min;
     });
     // Update the state with the sorted array
     setCoins(sortedCoins);
   };
 
   // Function to handle sorting by 24-hour price change in decreasing order
-  const handleSortByPriceChange24hDecreasing = () => {
+  const handleSortByPriceChange5MinDecreasing = () => {
     // Create a shallow copy of the coins array and sort it based on 24-hour price change in decreasing order
     const sortedCoins = [...coins].sort((a, b) => {
-      return a.percent_change_24h - b.percent_change_24h;
+      return a.percent_change_5min - b.percent_change_5min;
     });
     // Update the state with the sorted array
     setCoins(sortedCoins);
@@ -61,8 +61,8 @@ export default function useSortCoins({ coins, setCoins, coinsCopy }) {
     handleSortingByUsdPriseIncreasing,
     handleSortingByUsdPriseDecreasing,
     handleSortByName,
-    handleSortByPriceChange24hIncreasing,
-    handleSortByPriceChange24hDecreasing,
+    handleSortByPriceChange5MinDecreasing,
+    handleSortByPriceChange5MinIncreasing,
     handleSortByPopularity,
   };
 }

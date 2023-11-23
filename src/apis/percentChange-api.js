@@ -10,7 +10,7 @@ export async function percentChangeApi() {
   try {
     // Make a GET request to the Quantify Crypto API endpoint
     const response = await axios.get(
-      "https://quantifycrypto.com/api/v1/coins/percent-change?rank_to=04",
+      "https://quantifycrypto.com/api/v1/coins/percent-change",
       {
         // Set custom headers with API keys for authentication
         headers: {

@@ -8,8 +8,8 @@ export default function Filters({ coins, setCoins, coinsCopy }) {
     handleSortingByUsdPriseIncreasing,
     handleSortingByUsdPriseDecreasing,
     handleSortByName,
-    handleSortByPriceChange24hIncreasing,
-    handleSortByPriceChange24hDecreasing,
+    handleSortByPriceChange5MinIncreasing,
+    handleSortByPriceChange5MinDecreasing,
     handleSortByPopularity,
   } = useSortCoins({ coins, setCoins, coinsCopy });
 
@@ -23,10 +23,10 @@ export default function Filters({ coins, setCoins, coinsCopy }) {
         sort usd prise Decreasing
       </button>
       <button onClick={handleSortByName}>sort by name</button>
-      <button onClick={handleSortByPriceChange24hIncreasing}>
+      <button onClick={handleSortByPriceChange5MinIncreasing}>
         sort by 24h Increasing
       </button>
-      <button onClick={handleSortByPriceChange24hDecreasing}>
+      <button onClick={handleSortByPriceChange5MinDecreasing}>
         sort by 24h Decreasing
       </button>
       <button onClick={handleSortByPopularity}>sort by Popularity</button>
