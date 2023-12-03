@@ -1,4 +1,5 @@
 import RenderManyCharts from "./RenderManyCharts";
+import { formatPrice } from "../helpers/formatPrice";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({ limit, coins, searchInput }) {
@@ -37,7 +38,7 @@ export default function RenderCoins({ limit, coins, searchInput }) {
                 <tr className="coin" key={coin.id}>
                   <td>{coin.coin_name}</td>
                   <td>{coin.coin_symbol}</td>
-                  <td>{coin.coin_price.toFixed(7)}</td>
+                  <td>{formatPrice(coin.coin_price)}</td>
                   <td>{coin.percent_change_15min}</td>
                   <td>{coin.percent_change_5min}</td>
                   <td>

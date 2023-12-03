@@ -1,6 +1,5 @@
 // Import the React library to define React components
 import React from "react";
-
 // Functional component named UpdateLimit
 // Receives the 'setLimit' function as a prop
 export default function UpdateLimit({ setLimit }) {
