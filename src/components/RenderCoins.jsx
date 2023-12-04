@@ -63,7 +63,6 @@ export default function RenderCoins({ limit, coins, searchInput }) {
         val.coin_symbol.toLowerCase().includes(searchInput.toLowerCase())
     );
   };
-
   // Render the component
   return <div>{!coins ? <RenderLoading /> : <RenderCoinTable />}</div>;
 }

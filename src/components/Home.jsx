@@ -6,6 +6,9 @@ import RenderCoins from "./RenderCoins";
 import UpdateLimit from "./UpdateLimit";
 import Filters from "./Filters";
 import Search from "./Search";
+import { auth } from "../config/firebaseInfo";
+import { signOut } from "firebase/auth";
+import useCheckUser from "../hooks/useCheckUser";
 
 export default function Home() {
   // State for the main list of coins
@@ -19,6 +22,9 @@ export default function Home() {
 
   // state to declare the limit of coins to be displayed
   const [limit, setLimit] = useState(20);
+
+  // Call the useCheckUser hook to check if the user is logged in or not
+  useCheckUser();
 
   useEffect(() => {
     // Fetch coins data from the API on component mount
@@ -38,6 +44,7 @@ export default function Home() {
 
   return (
     <div>
+      <button onClick={() => signOut(auth)}>Sign Out</button>
       {/* Component to search for a coin */}
       <Search searchInput={searchInput} setSearchInput={setSearchInput} />
       {/* Component to filter the coins based on the current state */}
