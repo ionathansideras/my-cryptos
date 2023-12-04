@@ -1,4 +1,4 @@
-import { moveUp } from "../helpers/moveUp";
+import { moveUp } from "../../helpers/moveUp";
 // Functional component named MoveToTop
 export default function MoveToTop() {
   // Render a button labeled "Move Up"

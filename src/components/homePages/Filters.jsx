@@ -1,5 +1,5 @@
 import React from "react";
-import useSortCoins from "../hooks/useSortCoins";
+import useSortCoins from "../../hooks/useSortCoins";
 
 // component to filter the coins based on the current state
 export default function Filters({ coins, setCoins, coinsCopy }) {

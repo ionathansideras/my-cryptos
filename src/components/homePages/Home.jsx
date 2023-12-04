@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { getCoins } from "../apis/crypto-api";
-import { percentChangeApi } from "../apis/percentChange-api";
+import { getCoins } from "../../apis/crypto-api";
+import { percentChangeApi } from "../../apis/percentChange-api";
 import MoveToTop from "./MoveToTop";
 import RenderCoins from "./RenderCoins";
 import UpdateLimit from "./UpdateLimit";
 import Filters from "./Filters";
 import Search from "./Search";
-import { auth } from "../config/firebaseInfo";
+import { auth } from "../../config/firebaseInfo";
 import { signOut } from "firebase/auth";
-import useCheckUser from "../hooks/useCheckUser";
+import useCheckUser from "../../hooks/useCheckUser";
 
 export default function Home() {
   // State for the main list of coins

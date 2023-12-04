@@ -1,12 +1,12 @@
 // Import necessary modules from React and React Native
 import { useState } from "react";
 // Import necessary modules from Firebase
-import { auth } from "../config/firebaseInfo.js";
+import { auth } from "../../config/firebaseInfo.js";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { validation } from "../helpers/validation.js";
+import { validation } from "../../helpers/validation.js";
 // Functional component for user registration screen
 // the navigation prop is passed from the App component and we use it to navigate to other screens
 export default function Register() {

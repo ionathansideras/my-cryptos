@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { resetPassword } from "../helpers/sendPasswordResetEmail";
+import { resetPassword } from "../../helpers/sendPasswordResetEmail";
 
 export default function PasswordReset() {
   // State variable for email

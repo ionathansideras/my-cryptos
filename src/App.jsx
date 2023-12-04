@@ -1,8 +1,8 @@
-import Home from "./components/Home.jsx";
-import Login from "./components/Login.jsx";
-import Register from "./components/Register.jsx";
-import PasswordReset from "./components/PasswordReset.jsx";
-import WelcomePage from "./components/WelcomePage.jsx";
+import Home from "./components/homePages/Home.jsx";
+import Login from "./components/authPages/Login.jsx";
+import Register from "./components/authPages/Register.jsx";
+import PasswordReset from "./components/authPages/PasswordReset.jsx";
+import WelcomePage from "./components/welcomePages/WelcomePage.jsx";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "./styles/loader.css";
 

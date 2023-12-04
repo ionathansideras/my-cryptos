@@ -1,10 +1,9 @@
 // Import necessary modules from React and React Native
 import { useState } from "react";
 // Import necessary modules from Firebase
-import { auth } from "../config/firebaseInfo.js";
-import { validation } from "../helpers/validation.js";
+import { auth } from "../../config/firebaseInfo.js";
+import { validation } from "../../helpers/validation.js";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { resetPassword } from "../helpers/sendPasswordResetEmail.js";
 import { useNavigate } from "react-router-dom";
 // Functional component for user login screen
 // the navigation prop is passed from the App component and we use it to navigate to other screens
@@ -24,7 +23,6 @@ export default function Login() {
       if (verified) {
         setEmail("");
         setPassword("");
-        alert("Logged in");
         navigate("/home"); // Navigate to home screen if email is verified
       } else {
         signOut(auth); // Sign out user if email is not verified

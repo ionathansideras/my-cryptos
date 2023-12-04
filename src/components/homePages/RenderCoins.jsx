@@ -1,5 +1,5 @@
-import RenderManyCharts from "./RenderManyCharts";
-import { formatPrice } from "../helpers/formatPrice";
+import RenderManyCharts from "../RenderManyCharts";
+import { formatPrice } from "../../helpers/formatPrice";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({ limit, coins, searchInput }) {
