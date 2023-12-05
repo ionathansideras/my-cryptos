@@ -9,11 +9,16 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
+import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
+
 // Import validation helper function
 import { validation } from "../../helpers/validation.js";
 
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
+
+// checks if user is logged in or not
+import useCheckUserLogedOut from "../../hooks/checkUserLogedOut.js";
 
 // Functional component for user registration screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
@@ -26,6 +31,8 @@ export default function Register() {
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
+  useCheckUserLogedOut();
+
   // Function for handling user registration
   async function handleRegister() {
     if (password === passwordConfirm) {
@@ -36,6 +43,9 @@ export default function Register() {
 
         // Send email verification to the newly registered user
         await sendEmailVerification(auth.currentUser);
+
+        // Create a new user in the database
+        createUserInDatabase();
 
         // Clear email, password, and password confirmation fields
         setEmail("");

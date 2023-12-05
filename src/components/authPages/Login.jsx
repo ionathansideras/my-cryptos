@@ -10,6 +10,9 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
 
+// checks if user is logged in or not
+import useCheckUserLogedOut from "../../hooks/checkUserLogedOut.js";
+
 // Functional component for user login screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
 export default function Login() {
@@ -19,6 +22,8 @@ export default function Login() {
 
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
+
+  useCheckUserLogedOut();
 
   // Function for handling user login
   async function handleLogin() {

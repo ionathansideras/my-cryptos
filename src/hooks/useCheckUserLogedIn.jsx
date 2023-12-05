@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebaseInfo";
 
 // Custom hook for checking user authentication status
-export default function useCheckUser() {
+export default function useCheckUserLogedIn() {
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
@@ -14,7 +14,10 @@ export default function useCheckUser() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         // If user is not logged in, navigate to the login page
-        navigate("/login");
+        navigate("/");
+      } else {
+        // If user is logged in, navigate to the home page
+        navigate("/home");
       }
     });
 
