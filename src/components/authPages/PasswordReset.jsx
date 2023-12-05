@@ -1,9 +1,18 @@
+// Import necessary modules from React and React Router
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Import the resetPassword function from the sendPasswordResetEmail.js file
 import { resetPassword } from "../../helpers/sendPasswordResetEmail";
 
+// Functional component for the password reset screen
 export default function PasswordReset() {
   // State variable for email
   const [email, setEmail] = useState("");
+
+  // useNavigate hook for navigating to different routes
+  const navigate = useNavigate();
+
   // Function for handling password reset
   async function handleResetPassword() {
     // Call the resetPassword function from the sendPasswordResetEmail.js file
@@ -22,6 +31,8 @@ export default function PasswordReset() {
         />
       </div>
       <button onClick={handleResetPassword}>Reset Password</button>
+      <button onClick={() => navigate("/login")}>Log In</button>
+      <button onClick={() => navigate("/register")}>Sign Up</button>
     </div>
   );
 }

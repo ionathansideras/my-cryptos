@@ -1,23 +1,27 @@
+// Import necessary modules from React and Firebase
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebaseInfo";
 
+// Custom hook for checking user authentication status
 export default function useCheckUser() {
+  // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is logged in or not
-    const databaseCheck = onAuthStateChanged(auth, (user) => {
+    // Check if the user is logged in or not using the onAuthStateChanged function
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
+        // If user is not logged in, navigate to the login page
         navigate("/login");
       }
     });
+
+    // Cleanup function: Unsubscribe from the event listener when the component is unmounted
+    // This prevents memory leaks and multiple event listeners running in the background
     return () => {
-      // Unsubscribe from the event listener when the component is unmounted
-      // because otherwise we will have a memory leak and there will be multiple event listeners
-      // running in the background
-      databaseCheck();
+      unsubscribe();
     };
-  }, []);
+  }, []); // The empty dependency array ensures that this effect runs only once after the initial render
 }

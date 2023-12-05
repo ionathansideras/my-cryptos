@@ -1,31 +1,44 @@
-// Import necessary modules from React and React Native
+// Import necessary modules from React and React Router
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 // Import necessary modules from Firebase
 import { auth } from "../../config/firebaseInfo.js";
 import { validation } from "../../helpers/validation.js";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+
+// Import GoogleAuth component for Google Sign-In
+import GoogleAuth from "./GoogleAuth.jsx";
+
 // Functional component for user login screen
-// the navigation prop is passed from the App component and we use it to navigate to other screens
+// The navigation prop is passed from the App component, and we use it to navigate to other screens
 export default function Login() {
   // State variables for email and password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
+
   // Function for handling user login
   async function handleLogin() {
     try {
       // Sign in user with the provided email and password
       await signInWithEmailAndPassword(auth, email, password);
-      console.log(auth?.currentUser);
-      const verified = auth?.currentUser?.emailVerified; // Check if email is verified
+
+      // Check if the email is verified
+      const verified = auth?.currentUser?.emailVerified;
+
       if (verified) {
+        // Clear email and password fields
         setEmail("");
         setPassword("");
-        navigate("/home"); // Navigate to home screen if email is verified
+        // Navigate to the home screen if email is verified
+        navigate("/home");
       } else {
-        signOut(auth); // Sign out user if email is not verified
+        // Sign out user if email is not verified
+        signOut(auth);
+        // Log a message indicating that the email is not verified
         console.log(validation({ code: "auth/email-not-verified" }));
       }
     } catch (error) {
@@ -33,6 +46,7 @@ export default function Login() {
       console.log(validation(error));
     }
   }
+
   return (
     <div>
       <h1>Log In</h1>
@@ -56,6 +70,9 @@ export default function Login() {
       <button onClick={() => navigate("/reset-password")}>
         Reset Password
       </button>
+      <button onClick={() => navigate("/register")}>Sign Up</button>
+      {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
+      <GoogleAuth prop={"LogIn with Google"} />
     </div>
   );
 }
