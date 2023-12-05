@@ -4,7 +4,6 @@ import { addDoc, collection } from "firebase/firestore";
 export async function createUserInDatabase() {
   // Get the users collection from the database
   const users = collection(db, "users");
-  console.log("users", users);
   // Add the user to the database
   await addDoc(users, {
     id: auth.currentUser.uid,

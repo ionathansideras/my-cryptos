@@ -9,9 +9,9 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
-
+import { checkUserVerified } from "../../helpers/checkUserVerified.js";
 // checks if user is logged in or not
-import useCheckUserLogedOut from "../../hooks/checkUserLogedOut.js";
+import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
 
 // Functional component for user login screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
@@ -23,6 +23,7 @@ export default function Login() {
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
+  // Custom hook to check if the user is already logged in
   useCheckUserLogedOut();
 
   // Function for handling user login
@@ -31,20 +32,14 @@ export default function Login() {
       // Sign in user with the provided email and password
       await signInWithEmailAndPassword(auth, email, password);
 
-      // Check if the email is verified
-      const verified = auth?.currentUser?.emailVerified;
-
-      if (verified) {
-        // Clear email and password fields
-        setEmail("");
-        setPassword("");
-        // Navigate to the home screen if email is verified
+      // Check if the user's email is verified
+      if (checkUserVerified()) {
+        // Navigate to the home page if the user is verified
         navigate("/home");
       } else {
-        // Sign out user if email is not verified
+        // Display an alert and sign out if the user's email is not verified
+        alert("Please verify your email");
         signOut(auth);
-        // Log a message indicating that the email is not verified
-        console.log(validation({ code: "auth/email-not-verified" }));
       }
     } catch (error) {
       // Display error message if login fails

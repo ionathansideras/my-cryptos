@@ -18,7 +18,7 @@ import { validation } from "../../helpers/validation.js";
 import GoogleAuth from "./GoogleAuth.jsx";
 
 // checks if user is logged in or not
-import useCheckUserLogedOut from "../../hooks/checkUserLogedOut.js";
+import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
 
 // Functional component for user registration screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
@@ -31,6 +31,7 @@ export default function Register() {
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
+  // Custom hook to check if the user is already logged in
   useCheckUserLogedOut();
 
   // Function for handling user registration

@@ -4,7 +4,6 @@ import Login from "./components/authPages/Login.jsx";
 import Register from "./components/authPages/Register.jsx";
 import PasswordReset from "./components/authPages/PasswordReset.jsx";
 import WelcomePage from "./components/welcomePages/WelcomePage.jsx";
-
 // Import necessary modules from react-router-dom
 import { HashRouter, Routes, Route } from "react-router-dom";
 

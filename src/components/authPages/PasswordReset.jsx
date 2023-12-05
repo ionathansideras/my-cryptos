@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../helpers/sendPasswordResetEmail";
 
 // checks if user is logged in or not
-import useCheckUserLogedOut from "../../hooks/checkUserLogedOut.js";
+import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
 
 // Functional component for the password reset screen
 export default function PasswordReset() {
@@ -16,6 +16,7 @@ export default function PasswordReset() {
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
 
+  // Custom hook to check if the user is already logged in
   useCheckUserLogedOut();
 
   // Function for handling password reset
