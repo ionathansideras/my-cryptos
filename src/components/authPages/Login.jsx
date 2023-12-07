@@ -27,7 +27,9 @@ export default function Login() {
   useCheckUserLogedOut();
 
   // Function for handling user login
-  async function handleLogin() {
+  async function handleLogin(e) {
+    // Prevent the default behavior of the form submit button
+    e.preventDefault();
     try {
       // Sign in user with the provided email and password
       await signInWithEmailAndPassword(auth, email, password);
@@ -50,23 +52,25 @@ export default function Login() {
   return (
     <div>
       <h1>Log In</h1>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button onClick={handleLogin}>Log In</button>
+      <form onSubmit={(e) => handleLogin(e)}>
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Log In</button>
+      </form>
       <button onClick={() => navigate("/reset-password")}>
         Reset Password
       </button>

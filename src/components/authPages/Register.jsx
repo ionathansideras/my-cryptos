@@ -65,31 +65,33 @@ export default function Register() {
   return (
     <div>
       <h1>Register</h1>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-        />
-      </div>
-      <button onClick={handleRegister}>Register</button>
+      <form onSubmit={(e) => handleRegister(e)}>
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </div>
+        <button type="submit">Register</button>
+      </form>
       <button onClick={() => navigate("/login")}>Log In</button>
       {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
       <GoogleAuth prop={"Register with Google"} />
