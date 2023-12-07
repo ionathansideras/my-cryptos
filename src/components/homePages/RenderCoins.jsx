@@ -10,10 +10,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRef } from "react";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
-export default function RenderCoins({ limit, coins, searchInput }) {
-  // State to store the favorites
-  const [favorites, setFavorites] = useState([]);
-
+export default function RenderCoins({
+  limit,
+  coins,
+  searchInput,
+  setFavorites,
+  favorites,
+}) {
+  // Reference to the image element
   const imgSrc = useRef(null);
 
   useEffect(() => {
@@ -33,14 +37,10 @@ export default function RenderCoins({ limit, coins, searchInput }) {
   }, [favorites]);
 
   function handleAddRemove(symbol) {
-    console.log(imgSrc.current.src);
-
     if (handleSrc(symbol) === star1) {
-      console.log("add");
       // add symbol to favorites
       setFavorites([...favorites, symbol]);
     } else {
-      console.log("remove");
       // remove symbol from favorites
       setFavorites(favorites.filter((val) => val !== symbol));
     }

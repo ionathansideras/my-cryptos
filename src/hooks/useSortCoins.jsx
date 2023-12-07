@@ -1,11 +1,26 @@
 // Custom hook for handling sorting logic for an array of coins
-export default function useSortCoins({ coins, setCoins, coinsCopy }) {
+export default function useSortCoins({
+  coins,
+  setCoins,
+  coinsCopy,
+  favorites,
+}) {
   // Function to handle sorting by USD price in increasing order
   const handleSortingByUsdPriseIncreasing = () => {
     // Create a shallow copy of the coins array and sort it based on USD price in increasing order
     const sortedCoins = [...coins].sort((a, b) => {
       return a.coin_price - b.coin_price;
     });
+    // Update the state with the sorted array
+    setCoins(sortedCoins);
+  };
+
+  // function to handle sorting by favorites
+  const handleSortByFavorites = () => {
+    // filters the coins array and returns only the coins that are in the favorites array
+    const sortedCoins = coins.filter((coin) =>
+      favorites.includes(coin.coin_symbol)
+    );
     // Update the state with the sorted array
     setCoins(sortedCoins);
   };
@@ -64,5 +79,6 @@ export default function useSortCoins({ coins, setCoins, coinsCopy }) {
     handleSortByPriceChange5MinDecreasing,
     handleSortByPriceChange5MinIncreasing,
     handleSortByPopularity,
+    handleSortByFavorites,
   };
 }

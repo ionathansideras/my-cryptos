@@ -26,6 +26,9 @@ export default function Home() {
   // State to declare the limit of coins to be displayed
   const [limit, setLimit] = useState(20);
 
+  // State to store the favorites
+  const [favorites, setFavorites] = useState([]);
+
   // Call the useCheckUser hook to check if the user is logged in or not
   useCheckUserLogedIn();
 
@@ -54,10 +57,21 @@ export default function Home() {
       <Search searchInput={searchInput} setSearchInput={setSearchInput} />
 
       {/* Component to filter the coins based on the current state */}
-      <Filters coins={coins} setCoins={setCoins} coinsCopy={coinsCopy} />
+      <Filters
+        coins={coins}
+        setCoins={setCoins}
+        coinsCopy={coinsCopy}
+        favorites={favorites}
+      />
 
       {/* Component to render the coins based on the current state */}
-      <RenderCoins limit={limit} coins={coins} searchInput={searchInput} />
+      <RenderCoins
+        limit={limit}
+        coins={coins}
+        searchInput={searchInput}
+        favorites={favorites}
+        setFavorites={setFavorites}
+      />
 
       {/* Component to update the limit */}
       <UpdateLimit setLimit={setLimit} />

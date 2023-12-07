@@ -2,7 +2,7 @@ import React from "react";
 import useSortCoins from "../../hooks/useSortCoins";
 
 // component to filter the coins based on the current state
-export default function Filters({ coins, setCoins, coinsCopy }) {
+export default function Filters({ coins, setCoins, coinsCopy, favorites }) {
   // Destructuring the sorting functions from the custom hook
   const {
     handleSortingByUsdPriseIncreasing,
@@ -11,7 +11,8 @@ export default function Filters({ coins, setCoins, coinsCopy }) {
     handleSortByPriceChange5MinIncreasing,
     handleSortByPriceChange5MinDecreasing,
     handleSortByPopularity,
-  } = useSortCoins({ coins, setCoins, coinsCopy });
+    handleSortByFavorites,
+  } = useSortCoins({ coins, setCoins, coinsCopy, favorites });
 
   return (
     <div>
@@ -30,6 +31,7 @@ export default function Filters({ coins, setCoins, coinsCopy }) {
         sort by 24h Decreasing
       </button>
       <button onClick={handleSortByPopularity}>sort by Popularity</button>
+      <button onClick={handleSortByFavorites}>sort by Favorites</button>
     </div>
   );
 }
