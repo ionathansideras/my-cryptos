@@ -9,7 +9,7 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
-import { checkUserVerified } from "../../helpers/checkUserVerified.js";
+
 // checks if user is logged in or not
 import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
 
@@ -35,7 +35,7 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password);
 
       // Check if the user's email is verified
-      if (checkUserVerified()) {
+      if (auth?.currentUser?.emailVerified) {
         // Navigate to the home page if the user is verified
         navigate("/home");
       } else {

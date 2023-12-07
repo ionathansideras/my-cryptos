@@ -7,6 +7,7 @@ import { auth } from "../../config/firebaseInfo.js";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
 } from "firebase/auth";
 
 import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
@@ -52,6 +53,7 @@ export default function Register() {
         setEmail("");
         setPassword("");
         setPasswordConfirm("");
+        signOut(auth);
       } catch (error) {
         // Display error message if registration fails
         console.log(validation(error));
