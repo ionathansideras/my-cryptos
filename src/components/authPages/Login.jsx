@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebaseInfo.js";
 import { validation } from "../../helpers/validation.js";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-
+import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
 
@@ -37,6 +37,7 @@ export default function Login() {
       // Check if the user's email is verified
       if (auth?.currentUser?.emailVerified) {
         // Navigate to the home page if the user is verified
+        createUserInDatabase();
         navigate("/home");
         email("");
         password("");

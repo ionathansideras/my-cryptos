@@ -10,8 +10,6 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
-
 // Import validation helper function
 import { validation } from "../../helpers/validation.js";
 
@@ -45,9 +43,6 @@ export default function Register() {
 
         // Send email verification to the newly registered user
         await sendEmailVerification(auth.currentUser);
-
-        // Create a new user in the database
-        createUserInDatabase();
 
         // Clear email, password, and password confirmation fields
         setEmail("");

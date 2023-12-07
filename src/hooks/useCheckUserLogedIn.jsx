@@ -1,9 +1,8 @@
 // Import necessary modules from React and Firebase
 import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebaseInfo";
-
 // Custom hook for checking user authentication status
 export default function useCheckUserLogedIn() {
   // useNavigate hook for navigating to different routes
@@ -15,6 +14,7 @@ export default function useCheckUserLogedIn() {
       if (!user) {
         // If user is not logged in, navigate to the login page
         navigate("/");
+        signOut(auth);
       } else {
         // If user is logged in, navigate to the home page
         navigate("/home");

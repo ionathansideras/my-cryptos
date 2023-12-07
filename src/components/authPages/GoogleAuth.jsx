@@ -2,6 +2,7 @@ import React from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../config/firebaseInfo.js";
 import { useNavigate } from "react-router-dom";
+import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
 
 // GoogleAuth component receives a prop named "prop"
 export default function GoogleAuth({ prop }) {
@@ -14,6 +15,7 @@ export default function GoogleAuth({ prop }) {
       // Attempt to sign in with Google using Firebase
       await signInWithPopup(auth, googleProvider);
       // If successful, navigate to the "/home" route
+      createUserInDatabase();
       navigate("/home");
     } catch (error) {
       // If an error occurs during sign-in, handle and log the error
