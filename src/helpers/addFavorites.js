@@ -1,12 +1,24 @@
 import { auth, db } from "../config/firebaseInfo.js";
-import { collection,addDoc,query} from 'firebase/firestore'
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 export async function addFavorites(symbol) {
-  const user = auth.currentUser;
-  if (user) {
-    const userRef = db.collection("users").doc(user.uid);
-    return userRef.update({
-      favorites: firebase.firestore.FieldValue.arrayUnion(symbol),
+  const user = auth?.currentUser;
+  const usersCollection = collection(db, "users");
+  const q = query(usersCollection, where("id", "==", user?.uid));
+  const querySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    const userDoc = querySnapshot.docs[0];
+    await updateDoc(userDoc.ref, {
+      favorites: symbol,
     });
+  } else {
+    throw new Error("No matching user document found");
   }
 }

@@ -5,27 +5,59 @@ import star2 from "../../assets/star2.png";
 import { getFavorites } from "../../helpers/getFavorites";
 import { useEffect, useState } from "react";
 import { addFavorites } from "../../helpers/addFavorites.js";
+import { auth } from "../../config/firebaseInfo";
+import { onAuthStateChanged } from "firebase/auth";
+import { useRef } from "react";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({ limit, coins, searchInput }) {
   // State to store the favorites
   const [favorites, setFavorites] = useState([]);
 
+  const imgSrc = useRef(null);
+
   useEffect(() => {
-    // Get favorites from local storage
-    getFavorites().then((results) => {
-      // Update the favorites state with the results
-      setFavorites(results);
-      console.log(results);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        getFavorites().then((result) => {
+          setFavorites(result);
+          console.log(result);
+        });
+      }
     });
+    return () => unsubscribe();
   }, []);
 
-  function handleAdd(symbol) {
-    // Add the symbol to the favorites
-    addFavorites(symbol);
-    // // Update the favorites state
-    // setFavorites([...favorites, symbol]);
+  useEffect(() => {
+    // Add the symbol to the favorites once the favorites state is updated
+    addFavorites(favorites);
+  }, [favorites]);
+
+  function handleAddRemove(symbol) {
+    console.log(imgSrc.current.src);
+
+    if (imgSrc.current.src === star1) {
+      console.log("add");
+      // add symbol to favorites
+      setFavorites([...favorites, symbol]);
+    } else {
+      console.log("remove");
+      // remove symbol from favorites
+      setFavorites(favorites.filter((val) => val !== symbol));
+    }
   }
+
+  // Function to handle the image source
+  const handleSrc = (symbol) => {
+    // If the symbol is in the favorites, display the filled star
+    if (!favorites.includes(symbol)) {
+      return star1;
+    }
+    // If the symbol is not in the favorites, display the empty star
+    else {
+      return star2;
+    }
+  };
   // Function to render the loading section
   const RenderLoading = () => {
     return (
@@ -63,10 +95,9 @@ export default function RenderCoins({ limit, coins, searchInput }) {
                 <tr className="coin" key={coin.id}>
                   <td>
                     <img
-                      onClick={() => handleAdd(coin.coin_symbol)}
-                      src={
-                        favorites[index] === coin.coin_symbol ? star2 : star1
-                      }
+                      onClick={() => handleAddRemove(coin.coin_symbol)}
+                      src={handleSrc(coin.coin_symbol)}
+                      ref={imgSrc}
                     ></img>
                   </td>
                   <td>{coin.coin_name}</td>
