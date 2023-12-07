@@ -38,6 +38,8 @@ export default function Login() {
       if (auth?.currentUser?.emailVerified) {
         // Navigate to the home page if the user is verified
         navigate("/home");
+        email("");
+        password("");
       } else {
         // Display an alert and sign out if the user's email is not verified
         alert("Please verify your email");

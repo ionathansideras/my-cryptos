@@ -21,7 +21,6 @@ export default function RenderCoins({ limit, coins, searchInput }) {
       if (user) {
         getFavorites().then((result) => {
           setFavorites(result);
-          console.log(result);
         });
       }
     });
@@ -36,7 +35,7 @@ export default function RenderCoins({ limit, coins, searchInput }) {
   function handleAddRemove(symbol) {
     console.log(imgSrc.current.src);
 
-    if (imgSrc.current.src === star1) {
+    if (handleSrc(symbol) === star1) {
       console.log("add");
       // add symbol to favorites
       setFavorites([...favorites, symbol]);
