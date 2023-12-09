@@ -41,8 +41,9 @@ export default function Home() {
           ...coin,
           coin_price: resultCoins[index].coin_price,
         }));
-        // Update the test state with the new array
+        // Update the coins state with the new array
         setCoins(updatedTest);
+        // Also update the coinsCopy state with the new array
         setCoinsCopy(updatedTest);
       });
     });
