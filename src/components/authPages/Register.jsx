@@ -88,7 +88,7 @@ export default function Register() {
         </div>
         <button type="submit">Register</button>
       </form>
-      <button onClick={() => navigate("/login")}>Log In</button>
+      <button onClick={() => navigate("/login")}>go to Log In</button>
       {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
       <GoogleAuth prop={"Register with Google"} />
     </div>

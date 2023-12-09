@@ -20,7 +20,7 @@ export default function CoinDetail() {
   }, []);
 
   useEffect(() => {
-    console.log(coinDetails);
+    //console.log(coinDetails);
   }, [coinDetails]);
 
   // Fetch more information about the crypto using the symbol

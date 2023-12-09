@@ -1,11 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 // checks if user is logged in or not
-import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
 
 export default function WelcomePage() {
   const navigate = useNavigate();
-  useCheckUserLogedOut();
   return (
     <div>
       <h1>Welcome to the app!</h1>

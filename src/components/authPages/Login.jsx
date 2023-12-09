@@ -48,6 +48,7 @@ export default function Login() {
       }
     } catch (error) {
       // Display error message if login fails
+      console.log(error.code);
       console.log(validation(error));
     }
   }
@@ -75,12 +76,12 @@ export default function Login() {
         <button type="submit">Log In</button>
       </form>
       <button onClick={() => navigate("/reset-password")}>
-        Reset Password
+        Forgot Password?
       </button>
       <button onClick={() => navigate("/email-verification")}>
         Resend Email Verification
       </button>
-      <button onClick={() => navigate("/register")}>Register</button>
+      <button onClick={() => navigate("/register")}>go to Register</button>
       {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
       <GoogleAuth prop={"LogIn with Google"} />
     </div>

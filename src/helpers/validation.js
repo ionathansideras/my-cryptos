@@ -16,6 +16,8 @@ export function validation(error) {
       return "Wrong password.";
     case "auth/invalid-login-credentials":
       return "User not found.";
+    case "auth/invalid-credential":
+      return "User not found.";
     case "auth/too-many-requests":
       return "Too many requests. Try again later.";
     case "auth/passwords-don't-match":
