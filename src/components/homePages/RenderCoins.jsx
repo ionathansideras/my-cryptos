@@ -8,6 +8,7 @@ import { addFavorites } from "../../helpers/addFavorites.js";
 import { auth } from "../../config/firebaseInfo";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({
@@ -99,7 +100,11 @@ export default function RenderCoins({
                       ref={imgSrc}
                     ></img>
                   </td>
-                  <td>{coin.coin_name}</td>
+                  <td>
+                    <Link to={`/coin/${coin.coin_symbol}`}>
+                      {coin.coin_name}
+                    </Link>
+                  </td>
                   <td>{coin.coin_symbol}</td>
                   <td>{formatPrice(coin.coin_price)}</td>
                   <td>{coin.percent_change_15min}</td>

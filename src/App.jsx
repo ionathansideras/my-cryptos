@@ -4,6 +4,8 @@ import Login from "./components/authPages/Login.jsx";
 import Register from "./components/authPages/Register.jsx";
 import PasswordReset from "./components/authPages/PasswordReset.jsx";
 import WelcomePage from "./components/welcomePages/WelcomePage.jsx";
+import EmailVerification from "./components/authPages/EmailVerification.jsx";
+import CoinDetail from "./components/detailsPages/CoinDetail.jsx";
 // Import necessary modules from react-router-dom
 import { HashRouter, Routes, Route } from "react-router-dom";
 
@@ -23,6 +25,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reset-password" element={<PasswordReset />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
+        {/* Add a dynamic route for CryptoDetail */}
+        <Route path="/coin/:symbol" element={<CoinDetail />} />
       </Routes>
     </HashRouter>
   );

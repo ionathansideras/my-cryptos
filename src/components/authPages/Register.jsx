@@ -40,7 +40,6 @@ export default function Register() {
       try {
         // Create a new user with the provided email and password
         await createUserWithEmailAndPassword(auth, email, password);
-
         // Send email verification to the newly registered user
         await sendEmailVerification(auth.currentUser);
 

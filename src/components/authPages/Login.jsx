@@ -77,7 +77,10 @@ export default function Login() {
       <button onClick={() => navigate("/reset-password")}>
         Reset Password
       </button>
-      <button onClick={() => navigate("/register")}>Sign Up</button>
+      <button onClick={() => navigate("/email-verification")}>
+        Resend Email Verification
+      </button>
+      <button onClick={() => navigate("/register")}>Register</button>
       {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
       <GoogleAuth prop={"LogIn with Google"} />
     </div>

@@ -14,10 +14,8 @@ export default function useCheckUserLogedIn() {
       if (!user) {
         // If user is not logged in, navigate to the login page
         navigate("/");
+        console.log("User is not logged in");
         signOut(auth);
-      } else {
-        // If user is logged in, navigate to the home page
-        navigate("/home");
       }
     });
 
