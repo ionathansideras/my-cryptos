@@ -48,7 +48,6 @@ export default function Login() {
       }
     } catch (error) {
       // Display error message if login fails
-      console.log(error.code);
       console.log(validation(error));
     }
   }
