@@ -30,7 +30,11 @@ export default function Header() {
 
   function animateSun() {
     dispatch(changeTheme());
-    setRotation((prevRotation) => prevRotation + 180);
+    if (rotation === 0) {
+      setRotation((prevRotation) => prevRotation + 180);
+    } else {
+      setRotation((prevRotation) => prevRotation - 180);
+    }
   }
 
   return (
