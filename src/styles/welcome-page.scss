@@ -1,3 +1,31 @@
 .welcome-page-all {
-  background-color: aqua;
+  margin-top: 10vh;
+
+  .welcome-section {
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover; /* Use 'contain' instead of 'cover' */
+    background-position-y: top;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    .section-one {
+      width: 50%;
+      height: 100%;
+    }
+
+    .section-two {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70%;
+        height: 70%;
+      }
+    }
+  }
 }

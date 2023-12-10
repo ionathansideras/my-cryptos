@@ -7,13 +7,38 @@ header {
   left: 0;
   right: 0;
   height: 10vh;
+  z-index: 10;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: #fff;
-  transition: transform 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 
   .header-sun {
     height: 5vh;
     cursor: pointer;
-    transition: transform 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .header-logo {
+    height: 5vh;
+    width: 20vh;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  div {
+    display: flex;
+    margin-right: 10px;
+  }
+
+  button {
+    height: 5vh;
+    border: none;
+    display: none;
+    padding: 0px 19px;
+    color: white;
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+    background: linear-gradient(to right, #0982ae, #33b5e5);
   }
 }

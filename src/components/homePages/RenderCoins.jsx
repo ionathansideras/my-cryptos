@@ -9,6 +9,8 @@ import { auth } from "../../config/firebaseInfo";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { palette } from "../../helpers/colorPalette.js";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({
@@ -18,6 +20,7 @@ export default function RenderCoins({
   setFavorites,
   favorites,
 }) {
+  const theme = useSelector((state) => state.theme.value);
   // Reference to the image element
   const imgSrc = useRef(null);
 
@@ -61,7 +64,12 @@ export default function RenderCoins({
   // Function to render the loading section
   const RenderLoading = () => {
     return (
-      <div className="loading-container">
+      <div
+        className="loading-container"
+        style={{
+          backgroundColor: theme === "dark" ? palette.color2 : palette.color4,
+        }}
+      >
         <div className="lds-ring">
           <div></div>
           <div></div>

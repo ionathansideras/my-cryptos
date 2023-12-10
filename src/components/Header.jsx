@@ -1,10 +1,13 @@
 import React from "react";
 import sun1 from "../assets/icons8-sun-48.png";
+import sun2 from "../assets/icons8-sun-48 (1).png";
+import logo from "../assets/my-cryptos.svg";
 import { auth } from "../config/firebaseInfo.js";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTheme } from "../redux/toggleThemes.js";
+import { palette } from "../helpers/colorPalette.js";
 
 export default function Header() {
   const button = useRef(null);
@@ -24,25 +27,21 @@ export default function Header() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
-
   function animateSun() {
     dispatch(changeTheme());
-    if (rotation === 0) {
-      setRotation((prevRotation) => prevRotation + 180);
-    } else {
-      setRotation((prevRotation) => prevRotation - 180);
-    }
+    setRotation((prevRotation) => prevRotation + 180);
   }
 
   return (
-    <header>
-      <div>logo</div>
+    <header
+      style={{
+        backgroundColor: theme === "dark" ? palette.color1 : palette.color4,
+      }}
+    >
+      <img src={logo} alt="logo" className="header-logo" />
       <div>
         <img
-          src={sun1}
+          src={theme === "dark" ? sun2 : sun1}
           alt="sun"
           ref={sun}
           style={{ transform: `rotate(${rotation}deg)` }}

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { getThemeColor, setThemeColor } from "../helpers/handleLocalStorage.js";
 const initialState = {
-  value: "dark",
+  value: getThemeColor() || "dark",
 };
 
 export const toggleThemes = createSlice({
@@ -14,6 +14,7 @@ export const toggleThemes = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.value = state.value === "dark" ? "light" : "dark";
+      setThemeColor(state.value);
     },
   },
 });
