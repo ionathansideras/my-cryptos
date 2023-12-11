@@ -2,10 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { palette } from "../../helpers/colorPalette";
-import backgroundDark from "../../assets/wave-haikei2.svg";
-import backgroundLight from "../../assets/wave-haikei3.svg";
-import womanWallet from "../../assets/bitcoin-investment.svg";
-// checks if user is logged in or not
+import main_icon from "../../assets/main_icon.svg";
 
 export default function WelcomePage() {
   const navigate = useNavigate();
@@ -13,23 +10,30 @@ export default function WelcomePage() {
 
   return (
     <main className="welcome-page-all">
+      <div className="background-svg"></div>
       <section
         className="welcome-section"
         style={{
-          backgroundImage:
-            theme === "dark"
-              ? `url(${backgroundDark})`
-              : `url(${backgroundLight})`,
+          backgroundColor: theme === "dark" ? palette.color3 : palette.color4,
         }}
       >
         <div className="section-one">
-          <button onClick={() => navigate("/login")}>Log In</button>
-          <button onClick={() => navigate("/register")}>Sign Up</button>
+          <h2 style={{ color: theme === "dark" ? "white" : "black" }}>
+            Unleash Your MyCryptos Adventure: Navigating the Waves of Digital
+            Wealth, Securing Your Financial Odyssey!
+          </h2>
+          <div>
+            <button onClick={() => navigate("/login")}>Log In</button>
+            <button onClick={() => navigate("/register")}>Sign Up</button>
+          </div>
         </div>
         <div className="section-two">
-          <img src={womanWallet}></img>
+          <img src={main_icon}></img>
         </div>
       </section>
+      <summary>
+        <h1>A few words about your crypto stite</h1>
+      </summary>
     </main>
   );
 }
