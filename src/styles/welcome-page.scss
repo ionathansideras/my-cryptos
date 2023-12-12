@@ -6,10 +6,6 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url("/blurry6.svg");
-    background-repeat: no-repeat;
-    background-size: cover; /* Use 'contain' instead of 'cover' */
-    background-position-y: bottom;
   }
   .welcome-section {
     height: 100vh;
@@ -17,38 +13,41 @@
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    border-radius: 0px 0px 80px 80px;
     transition: all 0.4s;
 
     .section-one {
-      background-image: url("/waves.svg");
+      background-image: url("/blurry6.svg");
       background-repeat: no-repeat;
       background-size: cover;
       background-position-y: top;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 0 20px;
       width: 50%;
-      border-radius: 0px 0px 0px 70px;
+      border-radius: 0px 0px 10px 0px;
       height: 100%;
       h2 {
-        font-size: 4vh;
+        font-size: 2.5vw;
         transition: all 0.4s;
         text-align: center;
+        color: white;
       }
-      div {
+      .buttons-con {
         button {
           padding: 5px 10px;
           border: none;
           color: white;
           border-radius: 3px;
-          width: 15vh;
+          width: 9vw;
+          min-width: 70px;
           height: 5vh;
-          font-size: 2vh;
+          font-size: 1vw;
           margin: 0 20px;
-          background: linear-gradient(to right, #0982ae, #33b5e5);
+          background-color: white;
+          font-weight: bold;
+          color: #4174ff;
           cursor: pointer;
           transition: all 0.3s;
 
@@ -69,14 +68,49 @@
       img {
         width: 70%;
         height: 70%;
+        animation: floatAnimation 6s ease-in-out infinite;
+
+        @keyframes floatAnimation {
+          0%,
+          100% {
+            transform: translateY(20px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
       }
     }
   }
+
   summary {
     height: 150vh;
-    h1 {
-      color: white;
-      text-align: center;
+  }
+
+  @media screen and (max-width: 600px) {
+    .welcome-section {
+      height: 90vh;
+      .section-one {
+        width: 100%;
+        border-radius: 0px;
+        .buttons-con {
+          display: flex;
+          width: 100%;
+          justify-content: space-evenly;
+          button {
+            width: 30vw;
+            min-width: 70px;
+            margin: 0;
+            font-size: 4.5vw;
+          }
+        }
+        h2 {
+          font-size: 5vw;
+        }
+      }
+      .section-two {
+        display: none;
+      }
     }
   }
 }

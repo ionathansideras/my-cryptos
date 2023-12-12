@@ -1,0 +1,29 @@
+/* FakeChart.css */
+.fake-chart {
+  width: 100%;
+  position: absolute;
+  height: auto;
+  height: 32vh;
+  bottom: 0;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+}
+
+.line {
+  stroke: #39ff14; /* Adjust the color of the line */
+  stroke-width: 2; /* Adjust the thickness of the line */
+  fill: none;
+  transition: all 0.5s ease-in-out; /* Add a smooth transition effect */
+}
+
+.axis text {
+  font-size: 10px;
+  fill: #ffffff;
+}
+
+.axis line {
+  stroke: #ddd;
+}
