@@ -10,7 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { palette } from "../../helpers/colorPalette.js";
+import { palette } from "../../data/colorPalette.js";
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
 export default function RenderCoins({

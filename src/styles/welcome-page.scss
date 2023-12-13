@@ -1,4 +1,6 @@
 .welcome-page-all {
+  overflow-x: hidden;
+
   .background-svg {
     position: fixed;
     top: 0;
@@ -7,6 +9,7 @@
     height: 100%;
     z-index: -1;
   }
+
   .welcome-section {
     height: 100vh;
     display: flex;
@@ -26,14 +29,16 @@
       align-items: center;
       flex-direction: column;
       width: 50%;
-      border-radius: 0px 0px 10px 0px;
+      border-radius: 0 0 10px 0;
       height: 100%;
+
       h2 {
         font-size: 2.5vw;
         transition: all 0.4s;
         text-align: center;
         color: white;
       }
+
       .buttons-con {
         button {
           padding: 5px 10px;
@@ -45,7 +50,7 @@
           height: 5vh;
           font-size: 1vw;
           margin: 0 20px;
-          background-color: white;
+          background-color: rgb(255, 255, 255);
           font-weight: bold;
           color: #4174ff;
           cursor: pointer;
@@ -84,15 +89,62 @@
   }
 
   summary {
-    height: 150vh;
+    padding: 20px;
+    transition: all 0.4s;
+
+    .welcome-article-1,
+    .welcome-article-2,
+    .welcome-article-3,
+    .welcome-article-4 {
+      display: flex;
+      position: relative;
+      height: 50vh;
+      align-items: center;
+      margin-top: 50px;
+      border-radius: 10px;
+      opacity: 0.5;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 1s;
+
+      div {
+        width: 50%;
+        text-align: center;
+        padding: 0 20px;
+        font-size: 1.5vw;
+      }
+
+      img {
+        width: 50%;
+        height: 100%;
+        background-image: url("/blurry6.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: top;
+        border-radius: 10px;
+      }
+    }
+
+    .welcome-article-1,
+    .welcome-article-3 {
+      left: 100vw;
+    }
+
+    .welcome-article-2,
+    .welcome-article-4 {
+      right: 100vw;
+    }
   }
 
   @media screen and (max-width: 600px) {
     .welcome-section {
       height: 90vh;
+
       .section-one {
         width: 100%;
-        border-radius: 0px;
+        border-radius: 0;
+        h2 {
+          font-size: 5vw;
+        }
         .buttons-con {
           display: flex;
           width: 100%;
@@ -104,12 +156,47 @@
             font-size: 4.5vw;
           }
         }
-        h2 {
-          font-size: 5vw;
-        }
       }
+
       .section-two {
         display: none;
+      }
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .welcome-article-1,
+      .welcome-article-2,
+      .welcome-article-3,
+      .welcome-article-4 {
+        flex-direction: column;
+        margin-top: 50px;
+        width: 90%;
+        height: fit-content;
+
+        div {
+          width: 90%;
+          height: 50%;
+          text-align: center;
+          padding: 20px !important;
+          font-size: 4vw;
+          display: flex;
+          align-items: center;
+        }
+
+        img {
+          width: 100%;
+          height: 50%;
+          border-radius: 10px;
+        }
+      }
+
+      .welcome-article-1,
+      .welcome-article-3 {
+        flex-direction: column-reverse;
       }
     }
   }

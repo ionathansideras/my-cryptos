@@ -3,4 +3,5 @@ export const palette = {
   color2: "#2f3136",
   color3: "#40444b",
   color4: "white",
+  color5: "#f2f2f2",
 };

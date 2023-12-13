@@ -7,7 +7,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTheme } from "../redux/toggleThemes.js";
-import { palette } from "../helpers/colorPalette.js";
+import { palette } from "../data/colorPalette.js";
 
 export default function Header() {
   const button = useRef(null);

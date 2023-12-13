@@ -3,14 +3,16 @@ import { line, curveCardinal } from "d3-shape";
 import { scaleLinear, scaleBand } from "d3-scale";
 
 const FakeChart = ({ chartContainer }) => {
-  const [chartData, setChartData] = useState([10, 30, 50, 70, 90]);
+  const [chartData, setChartData] = useState([
+    10, 30, 20, 70, 60, 40, 90, 5, 50, 10, 100,
+  ]);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(150);
+  const [containerHeight, setContainerHeight] = useState(0);
 
   useEffect(() => {
     const updateContainerDimensions = () => {
       setContainerWidth(chartContainer.current.offsetWidth);
-      setContainerHeight(chartContainer.current.offsetHeight / 3.5);
+      setContainerHeight(chartContainer.current.offsetHeight / 4);
     };
 
     const interval = setInterval(() => {
@@ -34,14 +36,14 @@ const FakeChart = ({ chartContainer }) => {
   const xScale = scaleBand()
     .domain(chartData.map((_, index) => index))
     .range([0, containerWidth]) // Use the container width
-    .padding(0.1);
+    .padding(0);
 
   const yScale = scaleLinear().domain([0, 100]).range([containerHeight, 0]); // Use the container height
 
   const lineGenerator = line()
     .x((_, index) => xScale(index) + xScale.bandwidth() / 2)
     .y((value) => yScale(value))
-    .curve(curveCardinal.tension(0.5));
+    .curve(curveCardinal.tension(1));
 
   return (
     <div className="fake-chart" ref={chartContainer}>
