@@ -50,7 +50,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div style={{ marginTop: "13vh" }}>
       {/* Button to sign out the user */}
       <button onClick={() => signOut(auth)}>Sign Out</button>
 

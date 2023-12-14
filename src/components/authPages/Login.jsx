@@ -53,7 +53,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: "13vh" }}>
       <h1>Log In</h1>
       <form onSubmit={(e) => handleLogin(e)}>
         <div>

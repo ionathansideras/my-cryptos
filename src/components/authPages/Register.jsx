@@ -59,7 +59,7 @@ export default function Register() {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: "13vh" }}>
       <h1>Register</h1>
       <form onSubmit={(e) => handleRegister(e)}>
         <div>

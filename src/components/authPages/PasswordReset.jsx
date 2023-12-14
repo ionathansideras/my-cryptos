@@ -26,7 +26,7 @@ export default function PasswordReset() {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: "13vh" }}>
       <h1>Reset Password</h1>
       <div>
         <label>Email</label>

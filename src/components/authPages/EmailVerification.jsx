@@ -49,7 +49,7 @@ export default function EmailVerification() {
 
   // Render the component
   return (
-    <div>
+    <div style={{ marginTop: "13vh" }}>
       {/* Form for resending email verification */}
       <form onSubmit={(e) => sendEmail(e)}>
         <h1>Resend Email Verification</h1>
