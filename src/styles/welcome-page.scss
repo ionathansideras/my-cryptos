@@ -1,7 +1,7 @@
 .welcome-page-all {
   overflow-x: hidden;
 
-  .background-svg {
+  .welcome-background-svg {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,7 +39,7 @@
         color: white;
       }
 
-      .buttons-con {
+      .section-buttons-container {
         button {
           padding: 5px 10px;
           border: none;
@@ -88,9 +88,11 @@
     }
   }
 
-  summary {
+  .welcome-summary {
     padding: 20px;
     transition: all 0.4s;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
 
     .welcome-article-1,
     .welcome-article-2,
@@ -145,7 +147,7 @@
         h2 {
           font-size: 5vw;
         }
-        .buttons-con {
+        .section-buttons-container {
           display: flex;
           width: 100%;
           justify-content: space-evenly;
@@ -163,7 +165,7 @@
       }
     }
 
-    summary {
+    .welcome-summary {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -197,6 +199,72 @@
       .welcome-article-1,
       .welcome-article-3 {
         flex-direction: column-reverse;
+      }
+    }
+  }
+
+  .welcome-footer {
+    background-color: black;
+    display: flex;
+
+    .footer-logo {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-content {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      flex-direction: column;
+      color: white;
+      padding: 20px;
+
+      hr {
+        width: 100%;
+      }
+
+      p,
+      h3 {
+        font-size: 1.5vw;
+      }
+
+      img {
+        margin-right: 2vw;
+        margin-top: 20px;
+        width: 4vw;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .welcome-footer {
+      flex-direction: column;
+      align-items: center;
+
+      .footer-logo {
+        width: 80%;
+        margin-top: 20px;
+      }
+
+      .footer-content {
+        width: 90%;
+        align-items: center;
+        padding: 20px;
+
+        p,
+        h3 {
+          font-size: 4vw;
+        }
+
+        img {
+          margin-top: 20px;
+          width: 10vw;
+          margin-right: 7vw;
+        }
       }
     }
   }

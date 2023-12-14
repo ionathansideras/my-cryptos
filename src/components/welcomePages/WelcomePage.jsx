@@ -5,6 +5,9 @@ import { palette } from "../../data/colorPalette.js";
 import main_icon from "../../assets/main_icon.svg";
 import FakeChart from "../FakeChart.jsx";
 import { articlesData } from "../../data/articlesData.js";
+import logo from "../../assets/my-cryptos.svg";
+import github from "../../assets/github2.svg";
+import linkedin from "../../assets/linkedin2.svg";
 
 export default function WelcomePage() {
   // React Router navigation hook
@@ -44,7 +47,7 @@ export default function WelcomePage() {
   // JSX structure
   return (
     <main className="welcome-page-all">
-      <div className="background-svg"></div>
+      <div className="welcome-background-svg"></div>
       {/* Section One - Welcome */}
       <section
         className="welcome-section"
@@ -57,7 +60,7 @@ export default function WelcomePage() {
             Unleash Your MyCryptos Adventure: Navigating the Waves of Digital
             Wealth, Securing Your Financial Odyssey!
           </h2>
-          <div className="buttons-con">
+          <div className="section-buttons-container">
             <button onClick={() => navigate("/login")}>Log In</button>
             <button onClick={() => navigate("/register")}>Sign Up</button>
           </div>
@@ -70,6 +73,7 @@ export default function WelcomePage() {
       </section>
       {/* Section Three - Summary with Articles */}
       <summary
+        className="welcome-summary"
         style={{
           backgroundColor: theme === "dark" ? palette.color2 : palette.color5,
           color: theme === "dark" ? "rgb(228, 228, 228)" : palette.color3,
@@ -107,6 +111,32 @@ export default function WelcomePage() {
           </article>
         ))}
       </summary>
+      <footer className="welcome-footer">
+        <div className="footer-logo">
+          <img src={logo} alt="logo" className="footer-logo" />
+        </div>
+        <div className="footer-content">
+          <h2>Contact</h2>
+          <hr />
+          <p>Phone: 1-800-555-5555</p>
+          <hr />
+          <p>Email: example@gmail.com</p>
+          <hr />
+          <p>Address: 1234 Example Street, City, State 12345</p>
+          <hr />
+          <div className="footer-social-media">
+            <a href="https://github.com/ionathansideras" target="_blank">
+              <img src={github} alt="github" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ionathan-sideras-072a60255/"
+              target="_blank"
+            >
+              <img src={linkedin} alt="linkedin" />
+            </a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
