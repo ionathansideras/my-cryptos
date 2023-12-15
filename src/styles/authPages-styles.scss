@@ -55,14 +55,34 @@
           font-size: 1vw;
         }
 
-        input {
-          width: 99%;
-          height: 5vh;
-          border: none;
-          border-radius: 5px;
-          outline: none;
-          background-color: white;
-          font-size: 1vw;
+        .auth-input {
+          display: flex;
+          input {
+            width: 89%;
+            height: 5vh;
+            border: none;
+            border-radius: 5px 0px 0px 5px;
+            outline: none;
+            background-color: white;
+            font-size: 1vw;
+          }
+
+          .auth-icon-container {
+            width: 10%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 5px 5px 0px;
+            .auth-icons-1,
+            .auth-icons-2 {
+              height: 4vh;
+            }
+          }
+        }
+
+        .auth-icons-2 {
+          cursor: pointer;
         }
       }
       .submit-button {
@@ -179,14 +199,30 @@
             font-size: 4vw;
           }
 
-          input {
-            width: 99%;
-            height: 5vh;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-            background-color: white;
-            font-size: 4vw;
+          .auth-input {
+            display: flex;
+            input {
+              width: 89%;
+              height: 5vh;
+              border: none;
+              border-radius: 5px 0px 0px 5px;
+              outline: none;
+              background-color: white;
+              font-size: 2vh;
+            }
+
+            .auth-icon-container {
+              width: 10%;
+              background-color: white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 0px 5px 5px 0px;
+              .auth-icons-1,
+              .auth-icons-2 {
+                height: 4vh;
+              }
+            }
           }
         }
         .submit-button {

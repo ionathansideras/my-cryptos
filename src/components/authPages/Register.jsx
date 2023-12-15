@@ -1,5 +1,5 @@
 // Import necessary modules from React and React Router
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import necessary modules from Firebase
@@ -13,11 +13,20 @@ import {
 // Import validation helper function
 import { validation } from "../../helpers/validation.js";
 
+import { palette } from "../../data/colorPalette.js";
+import { useSelector } from "react-redux";
+
 // Import GoogleAuth component for Google Sign-In
 import GoogleAuth from "./GoogleAuth.jsx";
 
-// checks if user is logged in or not
+// Checks if user is logged in or not
 import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
+
+import registerImg from "../../assets/register.svg";
+import eyeImg from "../../assets/eye2.png";
+import hideImg from "../../assets/hide2.png";
+import emailImg from "../../assets/email2.png";
+import key from "../../assets/key2.png";
 
 // Functional component for user registration screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
@@ -26,6 +35,10 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  // Redux state hook for theme
+  const { value: theme } = useSelector((state) => state.theme);
 
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
@@ -58,39 +71,103 @@ export default function Register() {
     }
   }
 
+  // Toggle function for showing/hiding the password
+  function handleShowHidePassword() {
+    setShowPassword(!showPassword);
+  }
+
   return (
-    <div style={{ marginTop: "13vh" }}>
-      <h1>Register</h1>
-      <form onSubmit={(e) => handleRegister(e)}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <main className="auth-container">
+      <div className="auth-img">
+        <img src={registerImg} alt="register-img" />
+      </div>
+      <section
+        className="auth-content"
+        style={{
+          backgroundColor: theme === "dark" ? palette.color2 : palette.color5,
+        }}
+      >
+        {/* Welcoming title */}
+        <div
+          className="auth-welcoming-title"
+          style={{
+            color: theme === "dark" ? palette.color4 : "black",
+          }}
+        >
+          <h1>Welcome!</h1>
+          <p>Create an account and get started</p>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+
+        {/* Registration Form */}
+        <form
+          onSubmit={(e) => handleRegister(e)}
+          style={{
+            color: theme === "dark" ? palette.color4 : "black",
+          }}
+        >
+          <div className="auth-input-field">
+            <label>Email</label>
+            <div className="auth-input">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@gmail.com"
+              />
+              <div className="auth-icon-container">
+                <img className="auth-icons-1" src={emailImg} alt="email" />
+              </div>
+            </div>
+          </div>
+          <div className="auth-input-field">
+            <label>Password</label>
+            <div className="auth-input">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="********"
+              />
+              <div className="auth-icon-container">
+                <img
+                  onClick={handleShowHidePassword}
+                  className="auth-icons-2"
+                  src={showPassword ? hideImg : eyeImg}
+                  alt="eye"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="auth-input-field">
+            <label>Confirm Password</label>
+            <div className="auth-input">
+              <input
+                type="password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                placeholder="********"
+              />
+              <div className="auth-icon-container">
+                <img className="auth-icons-1" src={key} alt="key" />
+              </div>
+            </div>
+          </div>
+          <button className="submit-button" type="submit">
+            Register
+          </button>
+        </form>
+
+        {/* Google Sign-In */}
+        <GoogleAuth prop={"Register with Google"} />
+
+        {/* Navigation buttons */}
+        <div className="auth-navigate">
+          <button onClick={() => navigate("/email-verification")}>
+            Resend Email Verification
+          </button>
+          <button onClick={() => navigate("/login")}>Go to Log In</button>
         </div>
-        <div>
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            value={passwordConfirm}
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      <button onClick={() => navigate("/login")}>go to Log In</button>
-      {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
-      <GoogleAuth prop={"Register with Google"} />
-    </div>
+      </section>
+    </main>
   );
 }
