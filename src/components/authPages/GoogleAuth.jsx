@@ -4,6 +4,8 @@ import { auth, googleProvider } from "../../config/firebaseInfo.js";
 import { useNavigate } from "react-router-dom";
 import { createUserInDatabase } from "../../helpers/createUserInDatabase.js";
 
+import googleImg from "../../assets/google.svg";
+
 // GoogleAuth component receives a prop named "prop"
 export default function GoogleAuth({ prop }) {
   // useNavigate hook for navigating to different routes
@@ -24,5 +26,9 @@ export default function GoogleAuth({ prop }) {
   }
 
   // Render a button with an onClick event that triggers the handleLogin function
-  return <button onClick={handleLogin}>{prop}</button>;
+  return (
+    <button onClick={handleLogin} className="auth-google-button">
+      {prop} <img src={googleImg} alt="" />
+    </button>
+  );
 }

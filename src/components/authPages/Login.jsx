@@ -12,6 +12,12 @@ import GoogleAuth from "./GoogleAuth.jsx";
 
 // checks if user is logged in or not
 import useCheckUserLogedOut from "../../hooks/useCheckUserLogedOut.jsx";
+import { palette } from "../../data/colorPalette.js";
+
+import loginImg from "../../assets/robot-checking-user-profile.svg";
+
+// Import necessary modules from Redux toolkit
+import { useSelector } from "react-redux";
 
 // Functional component for user login screen
 // The navigation prop is passed from the App component, and we use it to navigate to other screens
@@ -19,6 +25,9 @@ export default function Login() {
   // State variables for email and password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Redux state hook for theme
+  const { value: theme } = useSelector((state) => state.theme);
 
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();
@@ -53,36 +62,70 @@ export default function Login() {
   }
 
   return (
-    <div style={{ marginTop: "13vh" }}>
-      <h1>Log In</h1>
-      <form onSubmit={(e) => handleLogin(e)}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <main className="auth-container">
+      <div className="auth-img">
+        <img src={loginImg} alt="login-img" />
+      </div>
+      <section
+        className="auth-content"
+        style={{
+          backgroundColor: theme === "dark" ? palette.color2 : palette.color5,
+        }}
+      >
+        <div
+          className="auth-welcoming-title"
+          style={{
+            color: theme === "dark" ? palette.color4 : "black",
+          }}
+        >
+          <h1>Hello Again!</h1>
+          <p>Log in to your account to continue</p>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+
+        <form
+          onSubmit={(e) => handleLogin(e)}
+          style={{
+            color: theme === "dark" ? palette.color4 : "black",
+          }}
+        >
+          <div className="auth-input-field">
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Example@gmail.com"
+            />
+          </div>
+          <div className="auth-input-field">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+            />
+          </div>
+          <button className="submit-button" type="submit">
+            Log In
+          </button>
+        </form>
+        {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
+        <GoogleAuth prop={"Log in with Google"} />
+        <div className="auth-navigate">
+          <button onClick={() => navigate("/reset-password")}>
+            Forgot Password?
+          </button>
+          <button onClick={() => navigate("/register")}>Go to Register</button>
         </div>
-        <button type="submit">Log In</button>
-      </form>
-      <button onClick={() => navigate("/reset-password")}>
-        Forgot Password?
-      </button>
-      <button onClick={() => navigate("/email-verification")}>
-        Resend Email Verification
-      </button>
-      <button onClick={() => navigate("/register")}>go to Register</button>
-      {/* Render GoogleAuth component with a prop for the Google Sign-In button label */}
-      <GoogleAuth prop={"LogIn with Google"} />
-    </div>
+
+        <button
+          onClick={() => navigate("/email-verification")}
+          style={{ display: "none" }}
+        >
+          Resend Email Verification
+        </button>
+      </section>
+    </main>
   );
 }
