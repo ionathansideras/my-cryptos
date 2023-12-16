@@ -30,6 +30,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [firebaseAuthError, setFirebaseAuthError] = useState(null);
 
   // Redux state hook for theme
   const { value: theme } = useSelector((state) => state.theme);
@@ -56,13 +57,14 @@ export default function Login() {
         setEmail(""); // Clear email field
         setPassword(""); // Clear password field
       } else {
-        // Display an alert and sign out if the user's email is not verified
-        alert("Please verify your email");
+        // Display an error and sign out if the user's email is not verified
+        setFirebaseAuthError("Please verify your email first");
         signOut(auth);
       }
     } catch (error) {
       // Display error message if login fails
-      console.log(validation(error));
+      const errorCode = validation(error);
+      setFirebaseAuthError(errorCode);
     }
   }
 
@@ -92,7 +94,12 @@ export default function Login() {
           <h1>Hello Again!</h1>
           <p>Log in to your account to continue</p>
         </div>
-
+        <div
+          className="auth-error-display"
+          style={{ display: firebaseAuthError ? "initial" : "none" }}
+        >
+          {firebaseAuthError && <p>{firebaseAuthError}</p>}
+        </div>
         {/* Login Form */}
         <form
           onSubmit={(e) => handleLogin(e)}

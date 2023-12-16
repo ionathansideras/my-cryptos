@@ -35,8 +35,9 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const [firebaseAuthError, setFirebaseAuthError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [infoMess, setInfoMess] = useState(null);
   // Redux state hook for theme
   const { value: theme } = useSelector((state) => state.theme);
 
@@ -60,14 +61,21 @@ export default function Register() {
         setEmail("");
         setPassword("");
         setPasswordConfirm("");
+        setInfoMess(
+          "An email has been sent to your email address. Please verify your email address to continue."
+        );
+        setFirebaseAuthError(null);
         signOut(auth);
       } catch (error) {
         // Display error message if registration fails
-        console.log(validation(error));
+        const errorCode = validation(error);
+        setFirebaseAuthError(errorCode);
+        console.log(error.code);
       }
     } else {
       // Display error message if password and password confirmation don't match
-      console.log(validation({ code: "auth/passwords-don't-match" }));
+      const errorCode = validation({ code: "auth/passwords-don't-match" });
+      setFirebaseAuthError(errorCode);
     }
   }
 
@@ -97,7 +105,18 @@ export default function Register() {
           <h1>Welcome!</h1>
           <p>Create an account and get started</p>
         </div>
-
+        <div
+          className="auth-error-display"
+          style={{ display: firebaseAuthError ? "initial" : "none" }}
+        >
+          {firebaseAuthError && <p>{firebaseAuthError}</p>}
+        </div>
+        <div
+          className="auth-info-display"
+          style={{ display: infoMess ? "initial" : "none" }}
+        >
+          {infoMess && <p>{infoMess}</p>}
+        </div>
         {/* Registration Form */}
         <form
           onSubmit={(e) => handleRegister(e)}
@@ -112,7 +131,7 @@ export default function Register() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@gmail.com"
+                placeholder="Example@gmail.com"
               />
               <div className="auth-icon-container">
                 <img className="auth-icons-1" src={emailImg} alt="email" />
