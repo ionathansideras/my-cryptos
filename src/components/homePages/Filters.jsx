@@ -21,13 +21,13 @@ export default function Filters({ coins, setCoins, coinsCopy, favorites, showFil
   }, []);
 
   const sortingOptions = [
-    { name: 'sort usd price Increasing', handler: handleSortingByUsdPriseIncreasing },
-    { name: 'sort usd price Decreasing', handler: handleSortingByUsdPriseDecreasing },
-    { name: 'sort by name', handler: handleSortByName },
-    { name: 'sort by 24h Increasing', handler: handleSortByPriceChange5MinIncreasing },
-    { name: 'sort by 24h Decreasing', handler: handleSortByPriceChange5MinDecreasing },
-    { name: 'sort by Popularity', handler: handleSortByPopularity },
-    { name: 'sort by Favorites', handler: handleSortByFavorites },
+    { name: 'Sort price Increasing', handler: handleSortingByUsdPriseIncreasing },
+    { name: 'Sort price Decreasing', handler: handleSortingByUsdPriseDecreasing },
+    { name: 'Sort by name', handler: handleSortByName },
+    { name: 'Sort 24h Increasing', handler: handleSortByPriceChange5MinIncreasing },
+    { name: 'Sort 24h Decreasing', handler: handleSortByPriceChange5MinDecreasing },
+    { name: 'Sort by Popularity', handler: handleSortByPopularity },
+    { name: 'Sort by Favorites', handler: handleSortByFavorites },
   ];
 
   return (
