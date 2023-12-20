@@ -89,10 +89,10 @@ export default function RenderCoins({
             <th>Favorites</th>
             <th>Name</th>
             <th>Symbol</th>
-            <th>Price usd</th>
+            {/* <th>Price usd</th>
             <th>Percent change 15min</th>
             <th>Percent change 5min</th>
-            <th>Chart</th>
+            <th>Chart</th> */}
           </tr>
         </thead>
         <tbody>
@@ -106,6 +106,7 @@ export default function RenderCoins({
                       onClick={() => handleAddRemove(coin.coin_symbol)}
                       src={handleSrc(coin.coin_symbol)}
                       ref={imgSrc}
+                      className="favorite-star"
                     ></img>
                   </td>
                   <td>
@@ -114,12 +115,12 @@ export default function RenderCoins({
                     </Link>
                   </td>
                   <td>{coin.coin_symbol}</td>
-                  <td>{formatPrice(coin.coin_price)}</td>
-                  <td>{coin.percent_change_15min}</td>
+                  {/* <td>{formatPrice(coin.coin_price)}</td> */}
+                  {/* <td>{coin.percent_change_15min}</td>
                   <td>{coin.percent_change_5min}</td>
                   <td>
                     <RenderManyCharts chartData={coin} />
-                  </td>
+                  </td> */}
                 </tr>
               )
           )}
