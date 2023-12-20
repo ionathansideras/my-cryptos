@@ -18,7 +18,7 @@ export default function useSortCoins({
   // function to handle sorting by favorites
   const handleSortByFavorites = () => {
     // filters the coins array and returns only the coins that are in the favorites array
-    const sortedCoins = coins.filter((coin) =>
+    const sortedCoins = [...coins].filter((coin) =>
       favorites.includes(coin.coin_symbol)
     );
     // Update the state with the sorted array
@@ -65,8 +65,8 @@ export default function useSortCoins({
     setCoins(sortedCoins);
   };
 
-  // Function to handle sorting by popularity (resetting to the original order)
-  const handleSortByPopularity = () => {
+  // Function to handle sorting by removeFilters (resetting to the original order)
+  const removeFilters = () => {
     // Reset the state to the original order (coinsCopy)
     setCoins(coinsCopy);
   };
@@ -78,7 +78,7 @@ export default function useSortCoins({
     handleSortByName,
     handleSortByPriceChange5MinDecreasing,
     handleSortByPriceChange5MinIncreasing,
-    handleSortByPopularity,
+    removeFilters,
     handleSortByFavorites,
   };
 }
