@@ -59,7 +59,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="home-main" style={{backgroundColor: theme === 'dark' ? palette.color3 : palette.color5}}>
+    <main
+      className="home-main"
+      style={{
+        backgroundColor: theme === "dark" ? palette.color3 : palette.color5,
+      }}
+    >
       <div className="search-filters">
         <div className="search-container">
           {/* Component to search for a coin */}
