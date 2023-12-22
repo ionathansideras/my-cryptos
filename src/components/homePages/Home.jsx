@@ -22,6 +22,7 @@ import { palette } from "../../data/colorPalette.js";
 export default function Home() {
   // State for the main list of coins
   const [coins, setCoins] = useState("");
+
   // State to store a copy of the original list of coins
   const [coinsCopy, setCoinsCopy] = useState();
 
@@ -38,6 +39,7 @@ export default function Home() {
   const { value: theme } = useSelector((state) => state.theme);
 
   const [showFilters, setShowFilters] = useState(false);
+  
   // Call the useCheckUser hook to check if the user is logged in or not
   useCheckUserLogedIn();
 
