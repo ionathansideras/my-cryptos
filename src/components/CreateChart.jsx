@@ -18,12 +18,14 @@ const CreateChart = ({ name, data, labels }) => {
             backgroundColor: "rgba(75,192,192,0.2)",
             borderColor: data[9] > data[8] ? '#39FF14' : '#FF3131',
             borderWidth: 1,
+            pointRadius: 1, // Set pointRadius to 0 to remove dots
+            pointHoverRadius: 0, // Set pointHoverRadius to 0 to remove dots on hover
           },
         ],
       },
       options: {
-        maintainAspectRatio: false, // Allow the chart to adapt to the container
-        responsive: true, // Make the chart responsive
+        maintainAspectRatio: false,
+        responsive: true,
         scales: {
           x: {
             display: false,

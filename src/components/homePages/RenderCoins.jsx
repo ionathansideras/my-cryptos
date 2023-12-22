@@ -24,6 +24,7 @@ export default function RenderCoins({
   // Reference to the image element
   const imgSrc = useRef(null);
 
+  // React router hook to navigate to a different page
   const navigate = useNavigate();
 
   // Function to handle the navigation to the coin page
@@ -71,6 +72,7 @@ export default function RenderCoins({
       return star2;
     }
   };
+
   // Function to render the loading section
   const RenderLoading = () => {
     return (
@@ -129,10 +131,10 @@ export default function RenderCoins({
         <thead className="coins-head-table">
           <tr>
             <th>Favorites</th>
-            <th>Name</th>
+            <th className="name-title">Name</th>
             <th>Symbol</th>
             <th>Price usd</th>
-            <th className="percent15-title">Percent change 15min</th>
+            <th>Percent change 15min</th>
             <th>Percent change 5min</th>
             <th className="chart-title">Chart</th>
           </tr>
@@ -161,11 +163,10 @@ export default function RenderCoins({
                       className="favorite-star"
                     ></img>
                   </td>
-                  <td>{coin.coin_name}</td>
+                  <td  className="name-body">{coin.coin_name}</td>
                   <td>{coin.coin_symbol}</td>
                   <td>{formatPrice(coin.coin_price)}$</td>
                   <td
-                    className="percent15-body"
                     style={{
                       color:
                         coin.percent_change_15min > coin.percent_change_5min

@@ -21,10 +21,6 @@
     .coins-body-table {
       .coin {
         cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-          opacity: 0.7;
-        }
 
         .home-charts {
           width: 10vw;
@@ -52,7 +48,7 @@
           .chart-title {
             display: none;
           }
-          .percent15-title {
+          .name-title {
             display: none;
           }
           th {
@@ -67,13 +63,13 @@
           .home-charts {
             display: none;
           }
-          .percent15-body {
+          .name-body {
             display: none;
           }
           td {
             font-size: 3.5vw;
             .favorite-star {
-              height: 2vh;
+              height: 3vh;
             }
           }
         }
