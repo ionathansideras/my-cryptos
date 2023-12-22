@@ -11,7 +11,6 @@
 
     .coins-head-table {
       tr {
-        
         th {
           text-align: center;
           font-size: 1.5vw;
@@ -21,6 +20,12 @@
 
     .coins-body-table {
       .coin {
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          opacity: 0.7;
+        }
+
         .home-charts {
           width: 10vw;
           height: 15vh;
@@ -29,10 +34,6 @@
         td {
           text-align: center;
           font-size: 1.5vw;
-          a {
-            text-decoration: none;
-            color: inherit;
-          }
 
           .favorite-star {
             height: 3.5vh;
@@ -44,10 +45,8 @@
   }
   @media screen and (max-width: 600px) {
     margin-top: 0;
-   
 
     .coins-table {
-
       .coins-head-table {
         tr {
           .chart-title {
@@ -64,7 +63,7 @@
 
       .coins-body-table {
         .coin {
-            height: 7vh;
+          height: 7vh;
           .home-charts {
             display: none;
           }

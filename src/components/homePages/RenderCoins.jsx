@@ -8,7 +8,7 @@ import { addFavorites } from "../../helpers/addFavorites.js";
 import { auth } from "../../config/firebaseInfo";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { palette } from "../../data/colorPalette.js";
 // React component for rendering a list of coins
@@ -23,6 +23,16 @@ export default function RenderCoins({
   const theme = useSelector((state) => state.theme.value);
   // Reference to the image element
   const imgSrc = useRef(null);
+
+  const navigate = useNavigate();
+
+  // Function to handle the navigation to the coin page
+  function handleNavigation(e, symbol) {
+    if (e.target.className === imgSrc.current.className) {
+      return;
+    }
+    navigate(`/coin/${symbol}`);
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -95,6 +105,18 @@ export default function RenderCoins({
     }
   }
 
+  function handleAddRemove(symbol) {
+    const isFavorite = favorites.includes(symbol);
+
+    if (isFavorite) {
+      // remove symbol from favorites
+      setFavorites(favorites.filter((val) => val !== symbol));
+    } else {
+      // add symbol to favorites
+      setFavorites([...favorites, symbol]);
+    }
+  }
+
   // Function to render the coin table
   const RenderCoinTable = () => {
     return (
@@ -121,13 +143,14 @@ export default function RenderCoins({
               // Conditional rendering to limit based on the index
               index <= limit && (
                 <tr
+                  onClick={(e) => handleNavigation(e, coin.coin_symbol)}
                   className="coin"
                   key={coin.id}
                   style={{
                     borderBottom:
                       theme === "dark"
                         ? " 1px solid #636363"
-                        : "1px solid #d2d2d2"
+                        : "1px solid #d2d2d2",
                   }}
                 >
                   <td>
@@ -138,11 +161,7 @@ export default function RenderCoins({
                       className="favorite-star"
                     ></img>
                   </td>
-                  <td>
-                    <Link to={`/coin/${coin.coin_symbol}`}>
-                      {coin.coin_name}
-                    </Link>
-                  </td>
+                  <td>{coin.coin_name}</td>
                   <td>{coin.coin_symbol}</td>
                   <td>{formatPrice(coin.coin_price)}$</td>
                   <td
