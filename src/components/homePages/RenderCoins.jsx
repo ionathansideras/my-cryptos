@@ -80,27 +80,56 @@ export default function RenderCoins({
     );
   };
 
+  function handlePercentChange(percentChange) {
+    // Ensure percentChange is a string
+    if (typeof percentChange !== "string") {
+      percentChange = percentChange.toString();
+    }
+
+    const percentChangeArray = percentChange.split("");
+    if (percentChangeArray[0] !== "-") {
+      percentChangeArray.unshift("+");
+      return percentChangeArray.join("");
+    } else {
+      return percentChange;
+    }
+  }
+
   // Function to render the coin table
   const RenderCoinTable = () => {
     return (
-      <table>
-        <thead>
+      <table
+        className="coins-table"
+        style={{
+          color: theme === "dark" ? palette.color4 : "black",
+        }}
+      >
+        <thead className="coins-head-table">
           <tr>
             <th>Favorites</th>
             <th>Name</th>
             <th>Symbol</th>
-            {/* <th>Price usd</th>
-            <th>Percent change 15min</th>
+            <th>Price usd</th>
+            <th className="percent15-title">Percent change 15min</th>
             <th>Percent change 5min</th>
-            <th>Chart</th> */}
+            <th className="chart-title">Chart</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="coins-body-table">
           {filterAndMapCoins().map(
             (coin, index) =>
               // Conditional rendering to limit based on the index
               index <= limit && (
-                <tr className="coin" key={coin.id}>
+                <tr
+                  className="coin"
+                  key={coin.id}
+                  style={{
+                    borderBottom:
+                      theme === "dark"
+                        ? " 1px solid #636363"
+                        : "1px solid #d2d2d2"
+                  }}
+                >
                   <td>
                     <img
                       onClick={() => handleAddRemove(coin.coin_symbol)}
@@ -115,12 +144,31 @@ export default function RenderCoins({
                     </Link>
                   </td>
                   <td>{coin.coin_symbol}</td>
-                  {/* <td>{formatPrice(coin.coin_price)}</td> */}
-                  {/* <td>{coin.percent_change_15min}</td>
-                  <td>{coin.percent_change_5min}</td>
-                  <td>
+                  <td>{formatPrice(coin.coin_price)}$</td>
+                  <td
+                    className="percent15-body"
+                    style={{
+                      color:
+                        coin.percent_change_15min > coin.percent_change_5min
+                          ? "#39FF14"
+                          : "#FF3131",
+                    }}
+                  >
+                    {handlePercentChange(coin.percent_change_15min)}%
+                  </td>
+                  <td
+                    style={{
+                      color:
+                        coin.percent_change_5min > coin.percent_change_15min
+                          ? "#39FF14"
+                          : "#FF3131",
+                    }}
+                  >
+                    {handlePercentChange(coin.percent_change_5min)}%
+                  </td>
+                  <td className="home-charts">
                     <RenderManyCharts chartData={coin} />
-                  </td> */}
+                  </td>
                 </tr>
               )
           )}
@@ -141,5 +189,9 @@ export default function RenderCoins({
     );
   };
   // Render the component
-  return <div>{!coins ? <RenderLoading /> : <RenderCoinTable />}</div>;
+  return (
+    <article className="all-coins">
+      {!coins ? <RenderLoading /> : <RenderCoinTable />}
+    </article>
+  );
 }

@@ -1,0 +1,84 @@
+.all-coins {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vh;
+
+  .coins-table {
+    width: 96%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    .coins-head-table {
+      tr {
+        
+        th {
+          text-align: center;
+          font-size: 1.5vw;
+        }
+      }
+    }
+
+    .coins-body-table {
+      .coin {
+        .home-charts {
+          width: 10vw;
+          height: 15vh;
+          padding-right: 10px;
+        }
+        td {
+          text-align: center;
+          font-size: 1.5vw;
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+
+          .favorite-star {
+            height: 3.5vh;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    margin-top: 0;
+   
+
+    .coins-table {
+
+      .coins-head-table {
+        tr {
+          .chart-title {
+            display: none;
+          }
+          .percent15-title {
+            display: none;
+          }
+          th {
+            font-size: 3.5vw;
+          }
+        }
+      }
+
+      .coins-body-table {
+        .coin {
+            height: 7vh;
+          .home-charts {
+            display: none;
+          }
+          .percent15-body {
+            display: none;
+          }
+          td {
+            font-size: 3.5vw;
+            .favorite-star {
+              height: 2vh;
+            }
+          }
+        }
+      }
+    }
+  }
+}
