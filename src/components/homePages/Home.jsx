@@ -46,35 +46,20 @@ export default function Home() {
   useCheckUserLogedIn();
 
   useEffect(() => {
-    const fetchCoins = () => {
-      // Fetch coins data from the API on component mount
-      getCoins()
-        .then((resultCoins) => {
-          return percentChangeApi().then((resultPercent) => {
-            // Create a new array with modified objects
-            const updatedTest = resultPercent.map((coin, index) => ({
-              ...coin,
-              coin_price: resultCoins[index].coin_price,
-            }));
-            // Update the coins state with the new array
-            setCoins(updatedTest);
-            // Also update the coinsCopy state with the new array
-            setCoinsCopy(updatedTest);
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching data: ", error);
-        });
-    };
-  
-    fetchCoins(); // Call the function at the beginning of the useEffect
-  
-    const intervalId = setInterval(fetchCoins, 25000); // Call the function every 25 seconds
-  
-    // Cleanup function to clear the interval
-    return () => {
-      clearInterval(intervalId);
-    };
+    // Fetch coins data from the API on component mount
+    getCoins().then((resultCoins) => {
+      percentChangeApi().then((resultPercent) => {
+        // Create a new array with modified objects
+        const updatedTest = resultPercent.map((coin, index) => ({
+          ...coin,
+          coin_price: resultCoins[index].coin_price,
+        }));
+        // Update the coins state with the new array
+        setCoins(updatedTest);
+        // Also update the coinsCopy state with the new array
+        setCoinsCopy(updatedTest);
+      });
+    });
   }, []);
 
   return (
