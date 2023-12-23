@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5vh;
+  margin-top: 2vh;
 
   .coins-table {
     width: 96%;
@@ -10,6 +10,7 @@
     border-spacing: 0;
 
     .coins-head-table {
+      height: 15vh;
       tr {
         th {
           text-align: center;
@@ -44,6 +45,7 @@
 
     .coins-table {
       .coins-head-table {
+      height: 10vh;
         tr {
           .chart-title {
             display: none;

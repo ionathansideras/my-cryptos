@@ -39,7 +39,9 @@ export default function Home() {
   const { value: theme } = useSelector((state) => state.theme);
 
   const [showFilters, setShowFilters] = useState(false);
-  
+
+  const [loading, setLoading] = useState(false);
+
   // Call the useCheckUser hook to check if the user is logged in or not
   useCheckUserLogedIn();
 
@@ -97,11 +99,29 @@ export default function Home() {
         setFavorites={setFavorites}
       />
 
-      {/* Component to update the limit */}
-      <UpdateLimit setLimit={setLimit} />
-
-      {/* Component to move to the top */}
-      <MoveToTop />
+      <footer className="home-footer">
+        <div
+          style={{ display: loading ? "inline-block" : "none" }}
+          className="lds-ellipsis"
+        >
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div className="home-footer-buttons">
+          {/* Component to update the limit */}
+          <UpdateLimit
+            setLimit={setLimit}
+            limit={limit}
+            coins={coins}
+            searchInput={searchInput}
+            setLoading={setLoading}
+          />
+          {/* Component to move to the top */}
+          <MoveToTop />
+        </div>
+      </footer>
     </main>
   );
 }

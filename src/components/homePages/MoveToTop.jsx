@@ -1,7 +1,28 @@
 import { moveUp } from "../../helpers/moveUp";
-// Functional component named MoveToTop
+import { useState, useEffect } from "react";
+
 export default function MoveToTop() {
-  // Render a button labeled "Move Up"
-  // When the button is clicked, it triggers the 'moveUp' function
-  return <button onClick={moveUp}>Move Up</button>;
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.pageYOffset > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <button
+      style={{ display: showButton ? "inline-block" : "none" }}
+      onClick={moveUp}
+    >
+      Move Up
+    </button>
+  );
 }
