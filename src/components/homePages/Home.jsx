@@ -47,7 +47,6 @@ export default function Home() {
 
   useEffect(() => {
     const fetchCoins = () => {
-      console.log("fetching data");
       // Fetch coins data from the API on component mount
       getCoins()
         .then((resultCoins) => {
