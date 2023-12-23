@@ -32,7 +32,7 @@ export default function UpdateLimit({ setLimit, limit, coins, searchInput, setLo
       setLoading(false);
        // Update the limit using the 'setLimit' function and the previous limit value
       setLimit((prevLimit) => prevLimit + 20);
-    }, 3000); 
+    }, 2000); 
 
   };
 

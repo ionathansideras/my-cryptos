@@ -95,7 +95,39 @@
     width: 100%;
 
     .home-footer-buttons {
+      display: flex;
+      align-items: center;
       padding: 7vh 0px;
+
+      @keyframes scaleUpDown {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .moveUp-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: 5vw;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+
+        &:hover {
+          img {
+            animation: scaleUpDown 1s ease-in-out;
+          }
+        }
+      }
     }
   }
 
@@ -132,6 +164,15 @@
           font-size: 3vw;
           padding: 1vh 2vw;
           margin: 0 3vw 2vh 0;
+        }
+      }
+    }
+
+    .home-footer {
+      .home-footer-buttons {
+        padding: 5vh 0px;
+        .moveUp-button {
+          width: 10vw;
         }
       }
     }
