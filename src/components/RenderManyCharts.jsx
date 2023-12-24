@@ -2,24 +2,28 @@ import React from "react";
 import CreateChart from "./CreateChart";
 
 // Functional component RenderManyCharts that takes chartData as a prop
-export default function RenderManyCharts({ chartData }) {
+export default function RenderManyCharts({ chartData, coinDetails }) {
+
+  const data = chartData || coinDetails;
+
   // Nested functional component RenderChart that maps over chartData and renders individual charts
   function RenderChart() {
     return (
       // Each chart is wrapped in a div with a unique key
       <CreateChart
-        name={chartData.coin_name}
+        fullChart={ coinDetails ? true : false}
+        name={data.coin_name}
         data={[
-          chartData.percent_change_1year,
-          chartData.percent_change_30d,
-          chartData.percent_change_14d,
-          chartData.percent_change_7d,
-          chartData.percent_change_24h,
-          chartData.percent_change_4h,
-          chartData.percent_change_2h,
-          chartData.percent_change_1h,
-          chartData.percent_change_15min,
-          chartData.percent_change_5min,
+          data.percent_change_1year,
+          data.percent_change_30d,
+          data.percent_change_14d,
+          data.percent_change_7d,
+          data.percent_change_24h,
+          data.percent_change_4h,
+          data.percent_change_2h,
+          data.percent_change_1h,
+          data.percent_change_15min,
+          data.percent_change_5min,
         ]}
         labels={[
           "1y",
@@ -39,5 +43,5 @@ export default function RenderManyCharts({ chartData }) {
 
   // Conditional rendering based on the presence of chartData
   // If chartData exists, RenderChart is rendered, otherwise, a loading message is displayed
-  return chartData ? <RenderChart /> : <div>Loading...</div>;
+  return chartData || coinDetails ? <RenderChart /> : <div>Loading...</div>;
 }

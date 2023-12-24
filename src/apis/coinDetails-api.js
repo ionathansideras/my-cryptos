@@ -19,7 +19,6 @@ export async function coinDetailsApi(symbol) {
         },
       }
     );
-
     // Return the data from the API response
     return response.data.data;
   } catch (error) {

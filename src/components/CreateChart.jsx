@@ -1,8 +1,15 @@
 import Chart from "chart.js/auto";
 import React, { useEffect, useRef } from "react";
+// Import necessary modules from Redux toolkit
+import { useSelector } from "react-redux";
 
-const CreateChart = ({ name, data, labels }) => {
+import { palette } from "../data/colorPalette.js";
+
+const CreateChart = ({ name, data, labels, fullChart }) => {
   const chartRef = useRef(null);
+
+  // Redux state hook for theme
+  const { value: theme } = useSelector((state) => state.theme);
 
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
@@ -13,12 +20,12 @@ const CreateChart = ({ name, data, labels }) => {
         labels: labels,
         datasets: [
           {
-            label: "",
+            label: name,
             data: data,
             backgroundColor: "rgba(75,192,192,0.2)",
             borderColor: data[9] > data[8] ? '#39FF14' : '#FF3131',
-            borderWidth: 1,
-            pointRadius: 1, // Set pointRadius to 0 to remove dots
+            borderWidth: 2,
+            pointRadius: fullChart ? 3 : 1, // Set pointRadius to 0 to remove dots
             pointHoverRadius: 0, // Set pointHoverRadius to 0 to remove dots on hover
           },
         ],
@@ -28,15 +35,24 @@ const CreateChart = ({ name, data, labels }) => {
         responsive: true,
         scales: {
           x: {
-            display: false,
+            display: fullChart,
+            ticks: {
+              color: theme === 'dark' ? palette.color5 : palette.color3, // change the color here
+            },
           },
           y: {
-            display: false,
+            display: fullChart,
+            ticks: {
+              color: theme === 'dark' ? palette.color5 : palette.color3, // change the color here
+            },
           },
         },
         plugins: {
           legend: {
-            display: false,
+            display: fullChart,
+            labels: {
+              color: theme === 'dark' ? palette.color5 : palette.color3, // change the color here
+            },
           },
         },
       },
@@ -45,7 +61,7 @@ const CreateChart = ({ name, data, labels }) => {
     return () => {
       myChart.destroy();
     };
-  }, []);
+  }, [name, data, labels, fullChart]); // Add dependencies to the useEffect
 
   return <canvas ref={chartRef} style={{ width: "100%", height: "100%" }} />;
 };
