@@ -5,6 +5,7 @@ import { percentChangeApi } from "../../apis/percentChange-api";
 import useCheckUserLogedIn from "../../hooks/useCheckUserLogedIn";
 import filterImg from "../../assets/filter.png";
 import searchImg from "../../assets/search.svg";
+import RenderTrendingCoins from "../RenderTrendingCoins";
 
 // Importing components
 import MoveToTop from "./MoveToTop";
@@ -66,9 +67,10 @@ export default function Home() {
     <main
       className="home-main"
       style={{
-        backgroundColor: theme === "dark" ? palette.color3 : palette.color5,
+        backgroundColor: theme === "dark" ? palette.color2 : palette.color5,
       }}
     >
+      <RenderTrendingCoins coins={coins} />
       <div className="search-filters">
         <div className="search-container">
           {/* Component to search for a coin */}

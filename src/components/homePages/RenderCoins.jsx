@@ -141,7 +141,7 @@ export default function RenderCoins({
                   {/* // Render the coin name, symbol, and price */}
                   <td className="name-body">{coin.coin_name}</td>
                   <td>{coin.coin_symbol}</td>
-                  <td>{formatPrice(coin.coin_price)}$</td>
+                  <td>${formatPrice(coin.coin_price)}</td>
                   {/* // Render the percent change for 15min and 5min with dynamic
                   color based on the change */}
                   <td

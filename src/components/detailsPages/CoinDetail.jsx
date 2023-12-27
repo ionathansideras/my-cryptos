@@ -5,6 +5,8 @@ import { coinDetailsApi } from "../../apis/coinDetails-api.js";
 import { useEffect, useState } from "react";
 import useCheckUserLogedIn from "../../hooks/useCheckUserLogedIn";
 import RenderManyCharts from "../RenderManyCharts";
+import {coinThumbApi} from "../../apis/coin-thumb-api.js";
+import RenderTrendingCoins from "../RenderTrendingCoins.jsx";
 
 // Import necessary modules from Redux toolkit
 import { useSelector } from "react-redux";
@@ -13,6 +15,8 @@ import { palette } from "../../data/colorPalette.js";
 
 export default function CoinDetail() {
   const { symbol } = useParams();
+
+  const [coinThumb, setCoinThumb] = useState();
 
   const [coinDetails, setCoinDetails] = useState({});
 
@@ -24,7 +28,13 @@ export default function CoinDetail() {
 
   useEffect(() => {
     coinDetailsApi(symbol).then((result) => {
+      console.log(result);
       setCoinDetails(result);
+    });
+
+    coinThumbApi(symbol).then((result) => {
+      console.log(result[0]);
+      setCoinThumb(result[0].large);
     });
   }, []);
 
@@ -32,13 +42,16 @@ export default function CoinDetail() {
     <main
       className="coin-detail-main"
       style={{
-        backgroundColor: theme === "dark" ? palette.color3 : palette.color4,
+        backgroundColor: theme === "dark" ? palette.color2 : palette.color4,
       }}
     >
+      
+      <img src={coinThumb} alt="coin thumb" />
       <h1>Coin Detail: {symbol}</h1>
       <div className="detail-chart">
         <RenderManyCharts coinDetails={coinDetails} />
       </div>
+      <RenderTrendingCoins />
     </main>
   );
 }

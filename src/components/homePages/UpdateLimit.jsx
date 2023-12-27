@@ -42,7 +42,7 @@ export default function UpdateLimit({ setLimit, limit, coins, searchInput, setLo
       className="glow-on-hover"
       style={{
         display: showLoadMore ? "inline-block" : "none",
-        background: theme === 'dark' ? palette.color2 : 'rgb(75 141 255)',
+        background: theme === 'dark' ? palette.color3 : 'rgb(75 141 255)',
       }}
       onClick={handleLoadMore}
     >
