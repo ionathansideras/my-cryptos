@@ -3,6 +3,7 @@ import { trendingCoinsApi } from "../apis/trending-coins-api.js";
 // Import necessary modules from Redux toolkit
 import { useSelector } from "react-redux";
 import { palette } from "../data/colorPalette.js";
+import { useNavigate } from "react-router-dom";
 
 export default function RenderTrendingCoins() {
   // State for storing the trending coins data
@@ -11,6 +12,8 @@ export default function RenderTrendingCoins() {
   const [scrollCount, setScrollCount] = useState(0);
   // Reference to the container div
   const container = useRef(null);
+
+  const navigate = useNavigate();
 
   // Redux state hook for theme
   const { value: theme } = useSelector((state) => state.theme);
@@ -68,6 +71,7 @@ export default function RenderTrendingCoins() {
           <div
             className="trending-coin-box"
             key={coin.item.coin_id}
+            onClick={() => navigate(`/coin/${coin.item.symbol}`)}
             style={{
               backgroundColor:
                 theme === "dark" ? palette.color3 : palette.color4,

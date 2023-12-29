@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import useCheckUserLogedIn from "../../hooks/useCheckUserLogedIn";
 import RenderManyCharts from "../RenderManyCharts";
 import {coinThumbApi} from "../../apis/coin-thumb-api.js";
-import RenderTrendingCoins from "../RenderTrendingCoins.jsx";
 
 // Import necessary modules from Redux toolkit
 import { useSelector } from "react-redux";
@@ -27,6 +26,7 @@ export default function CoinDetail() {
   useCheckUserLogedIn();
 
   useEffect(() => {
+    console.log('on')
     coinDetailsApi(symbol).then((result) => {
       console.log(result);
       setCoinDetails(result);
@@ -51,7 +51,6 @@ export default function CoinDetail() {
       <div className="detail-chart">
         <RenderManyCharts coinDetails={coinDetails} />
       </div>
-      <RenderTrendingCoins />
     </main>
   );
 }

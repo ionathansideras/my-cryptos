@@ -106,7 +106,7 @@ export default function RenderCoins({
             <th>Price usd</th>
             <th>Percent change 15min</th>
             <th>Percent change 5min</th>
-            <th className="chart-title">Chart</th>
+            <th className="chart-title">Percent change chart</th>
           </tr>
         </thead>
         <tbody className="coins-body-table">
