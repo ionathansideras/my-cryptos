@@ -63,7 +63,7 @@ export default function RenderTrendingCoins() {
           setScrollCount(scrollCount + 1);
         }
       }
-    },  2000);
+    },  5000);
   
     // Function to handle window resize
     const handleResize = () => {
