@@ -1,10 +1,106 @@
 .coin-detail-main {
-    height: 100%;
-    padding-top: 10vh;
-    min-height: 100vh;
+  padding-top: 10vh;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .crypto-info {
+    .crypto-info-head {
+      display: flex;
+      align-items: center;
+      height: 20vh;
+      transition: all 0.4s ease-in-out;
+
+      img {
+        height: 50%;
+        border-radius: 50%;
+      }
+
+      .info-set-favorites {
+        cursor: pointer;
+        height: 30%;
+        margin-left: 1.5vw;
+      }
+      h1,
+      h2 {
+        font-size: 2vw;
+        margin-left: 1.5vw;
+      }
+
+      h2 {
+        color: rgb(138, 138, 138) !important;
+      }
+    }
+
+    .crypto-info-content {
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease-in-out;
+
+      .info-container {
+        display: flex;
+        align-items: end;
+        margin-top: 5vh;
+
+        p,
+        h3 {
+          margin: 0;
+          font-size: 1.5vw;
+        }
+
+        p {
+          margin-left: 2vw !important;
+        }
+      }
+    }
+  }
+
+  .detail-chart {
+    height: 60vh;
+    width: 50%;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: start;
+
+    .crypto-info {
+      padding-left: 5vw;
+      margin-bottom: 5vh;
+      .crypto-info-head {
+        height: 10vh;
+
+        img {
+          height: 70%;
+        }
+
+        .info-set-favorites {
+            cursor: pointer;
+            height: 40%;
+            margin-left: 2.5vw;
+          }
+
+        h1,
+        h2 {
+          font-size: 4vw;
+          margin-left: 2.5vw;
+        }
+      }
+
+      .crypto-info-content {
+        .info-container {
+          p,
+          h3 {
+            font-size: 4vw;
+          }
+        }
+      }
+    }
 
     .detail-chart {
-        height: 50vh;
-        width: 50%;
+      height: 40vh;
+      width: 100%;
     }
+  }
 }

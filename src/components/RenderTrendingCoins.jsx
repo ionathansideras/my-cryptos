@@ -21,7 +21,6 @@ export default function RenderTrendingCoins() {
   // Effect for fetching the trending coins data
   useEffect(() => {
     trendingCoinsApi().then((result) => {
-      console.log(result);
       // Set the fetched data to state
       setTrendingCoins(result);
     });

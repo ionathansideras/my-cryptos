@@ -20,12 +20,12 @@ const CreateChart = ({ name, data, labels, fullChart }) => {
         labels: labels,
         datasets: [
           {
-            label: name,
+            label: `Percentage Change ${name}`,
             data: data,
             backgroundColor: "rgba(75,192,192,0.2)",
             borderColor: data[9] > data[8] ? '#39FF14' : '#FF3131',
             borderWidth: 2,
-            pointRadius: fullChart ? 3 : 1, // Set pointRadius to 0 to remove dots
+            pointRadius: fullChart ? 5 : 1, // Set pointRadius to 0 to remove dots
             pointHoverRadius: 0, // Set pointHoverRadius to 0 to remove dots on hover
           },
         ],
