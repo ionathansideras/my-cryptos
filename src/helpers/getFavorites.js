@@ -2,7 +2,7 @@ import { auth, db } from "../config/firebaseInfo.js";
 import { collection, query, getDocs, where } from "firebase/firestore";
 
 export async function getFavorites() {
-  // hook to get favorites from firestore database
+  // to get favorites from firestore database
   // Get the users collection from the database
   const user = auth?.currentUser;
   const users = collection(db, "users");
