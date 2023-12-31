@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { palette } from "../../data/colorPalette.js";
@@ -23,15 +23,21 @@ export default function WelcomePage() {
   const articleRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   useEffect(() => {
+    function changeViewPercentage() {
+      if (window.innerWidth < 600) {
+        return '0';
+      } else {
+        return '9';
+      }
+    }
     // Function to handle scroll events
     const handleScroll = () => {
       articleRefs.forEach((articleRef, index) => {
         let visible = articleRef.current.getBoundingClientRect().top;
-
         // Adjust styling based on visibility
         if (visible < window.innerHeight - 200) {
-          articleRef.current.style.left = index % 2 === 0 ? "0vw" : "auto";
-          articleRef.current.style.right = index % 2 !== 0 ? "0vw" : "auto";
+          articleRef.current.style.left = index % 2 === 0 ? `${changeViewPercentage()}%` : "auto";
+          articleRef.current.style.right = index % 2 !== 0 ? `-${changeViewPercentage()}%` : "auto";
           articleRef.current.style.opacity = "1";
         }
       });
@@ -40,8 +46,12 @@ export default function WelcomePage() {
     // Attach scroll event listener
     window.addEventListener("scroll", handleScroll);
 
+    window.addEventListener("resize", handleScroll);
+
     // Clean up by removing the scroll event listener when the component unmounts
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    };
   }, []);
 
   // JSX structure
@@ -94,6 +104,8 @@ export default function WelcomePage() {
                 <div className={`welcome-article-div-${index + 1}`}>
                   {/* Article Content */}
                   {article.title}
+                  <br></br>
+                  <br></br>
                   {article.content}
                 </div>
                 <img src={article.image} alt={`Article ${index + 1}`} />
@@ -104,6 +116,8 @@ export default function WelcomePage() {
                 <div className={`welcome-article-div-${index + 1}`}>
                   {/* Article Content */}
                   {article.title}
+                  <br></br>
+                  <br></br>
                   {article.content}
                 </div>
               </>

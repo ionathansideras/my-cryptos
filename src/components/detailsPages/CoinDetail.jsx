@@ -8,7 +8,8 @@ import RenderManyCharts from "../RenderManyCharts";
 import { coinThumbApi } from "../../apis/coin-thumb-api.js";
 import { addFavorites } from "../../helpers/addFavorites.js";
 import { handleSrcStarChange } from "../../helpers/handleSrcStarChange.js";
-import {getFavorites} from "../../helpers/getFavorites.js";
+import { getFavorites } from "../../helpers/getFavorites.js";
+import RenderLoading from "../RenderLoading.jsx";
 
 // Import necessary modules from Redux toolkit
 import { useSelector } from "react-redux";
@@ -20,7 +21,7 @@ export default function CoinDetail() {
 
   const [coinThumb, setCoinThumb] = useState();
 
-  const [coinDetails, setCoinDetails] = useState({});
+  const [coinDetails, setCoinDetails] = useState("");
 
   // Redux state hook for theme
   const { value: theme } = useSelector((state) => state.theme);
@@ -48,8 +49,8 @@ export default function CoinDetail() {
     }
   }
 
-   // Use useEffect to add the favorites to the local storage when the favorites state changes
-   useEffect(() => {
+  // Use useEffect to add the favorites to the local storage when the favorites state changes
+  useEffect(() => {
     // Call the addFavorites function with the favorites state
     // This function adds the favorites to the local storage
     addFavorites(favorites);
@@ -70,7 +71,9 @@ export default function CoinDetail() {
     });
   }, []);
 
-  return (
+  return !coinDetails ? (
+    <RenderLoading />
+  ) : (
     <main
       className="coin-detail-main"
       style={{

@@ -3,7 +3,6 @@ import { trendingCoinsApi } from "../apis/trending-coins-api.js";
 // Import necessary modules from Redux toolkit
 import { useSelector } from "react-redux";
 import { palette } from "../data/colorPalette.js";
-import { useNavigate } from "react-router-dom";
 
 export default function RenderTrendingCoins() {
   // State for storing the trending coins data
@@ -13,10 +12,13 @@ export default function RenderTrendingCoins() {
   // Reference to the container div
   const container = useRef(null);
 
-  const navigate = useNavigate();
-
   // Redux state hook for theme
   const { value: theme } = useSelector((state) => state.theme);
+
+  // Get the viewport width
+  const viewportWidth = window.innerWidth;
+  // Store the previous window width in a ref
+  const prevWidth = useRef(window.innerWidth);
 
   // Effect for fetching the trending coins data
   useEffect(() => {
@@ -29,10 +31,9 @@ export default function RenderTrendingCoins() {
   useEffect(() => {
     // Set up an interval that runs every 5 seconds
     const interval = setInterval(() => {
-      // Get the viewport width
-      const viewportWidth = window.innerWidth;
+      
       const limit = viewportWidth < 600 ? 12 : 11;
-  
+
       // Check if the container reference is set
       if (container.current) {
         // If we've scrolled 11 times, reset to the start
@@ -51,34 +52,40 @@ export default function RenderTrendingCoins() {
           }
           const margin = container.current.offsetWidth * 0.02; // 2% for the margin
           const totalBoxWidth = boxWidth + padding + margin;
-  
+
           // Scroll to the right by the width of one box
           container.current.scrollTo({
             left: container.current.scrollLeft + totalBoxWidth,
             behavior: "smooth",
           });
-  
+
           // Increment the scroll count
           setScrollCount(scrollCount + 1);
         }
       }
-    },  5000);
-  
+    }, 5000);
+
     // Function to handle window resize
     const handleResize = () => {
+      // If the width hasn't changed, return early
+      if (prevWidth.current === window.innerWidth) return;
+
+      // Update the previous width
+      prevWidth.current = window.innerWidth;
+
       if (container.current) {
         container.current.scrollTo({ left: 0, behavior: "smooth" });
         setScrollCount(0);
       }
     };
-  
+
     // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-  
+    window.addEventListener("resize", handleResize);
+
     // Clean up the interval and event listener when the component unmounts or before the next effect runs
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [scrollCount]);
 
@@ -90,7 +97,6 @@ export default function RenderTrendingCoins() {
           <div
             className="trending-coin-box"
             key={coin.item.coin_id}
-            onClick={() => navigate(`/coin/${coin.item.symbol}`)}
             style={{
               backgroundColor:
                 theme === "dark" ? palette.color3 : palette.color4,
