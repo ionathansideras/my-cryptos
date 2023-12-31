@@ -1,8 +1,8 @@
-# Crypto Cryptocurrency Project Documentation 🚀
+# My Cryptos Project Documentation 🚀
 
 ## Project Overview
 
-The Crypto Cryptocurrency project is a web application built using React, SCSS, Vite, and various packages for chart visualization such as d3-scale, d3-shape, and Chart.js. The project utilizes Axios for handling API requests to gather cryptocurrency information. Additionally, Redux Toolkit is employed for state management, and React Router Dom facilitates seamless navigation within the application.
+The My Cryptos project is a web application built using React, SCSS, Vite, and various packages for chart visualization such as d3-scale, d3-shape, and Chart.js. The project utilizes Axios for handling API requests to gather cryptocurrency information. Additionally, Redux Toolkit is employed for state management, and React Router Dom facilitates seamless navigation within the application.
 
 ### Technologies Used 🛠️
 
