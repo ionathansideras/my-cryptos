@@ -4,11 +4,10 @@ import { scaleLinear, scaleBand } from "d3-scale";
 
 const FakeChart = ({ chartContainer }) => {
   const [chartData, setChartData] = useState([
-    10, 30, 20, 70, 60, 40, 90, 5, 50, 10, 100,
+    10, 30, 20, 70, 60, 40, 90, 5, 50, 20, 100,
   ]);
   const [containerWidth, setContainerWidth] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
-
   useEffect(() => {
     const updateContainerDimensions = () => {
       setContainerWidth(chartContainer.current.offsetWidth);
@@ -72,7 +71,13 @@ const FakeChart = ({ chartContainer }) => {
               </g>
             ))}
           </g>
-          <path d={lineGenerator(chartData)} className="line" />
+          <path
+            d={lineGenerator(chartData)}
+            className="line"
+            style={{
+              stroke: chartData[9] < chartData[10] ? "#39FF14" : '#FF3131',
+            }}
+          />
         </g>
       </svg>
     </div>
