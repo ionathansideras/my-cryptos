@@ -24,7 +24,7 @@ export default function WelcomePage() {
 
   useEffect(() => {
     function changeViewPercentage() {
-      if (window.innerWidth < 600) {
+      if (window.innerWidth < 600 || (window.innerHeight > window.innerWidth)) {
         return '0';
       } else {
         return '9';
@@ -131,14 +131,10 @@ export default function WelcomePage() {
           <img src={logo} alt="logo" className="footer-logo" />
         </div>
         <div className="footer-content">
-          <h2>Contact</h2>
-          <hr />
+          <h2>Contact us</h2>
           <p>Phone: 1-800-555-5555</p>
-          <hr />
           <p>Email: example@gmail.com</p>
-          <hr />
           <p>Address: 1234 Example Street, City, State 12345</p>
-          <hr />
           <div className="footer-social-media">
             <a href="https://github.com/ionathansideras" target="_blank">
               <img src={github} alt="github" />

@@ -148,7 +148,7 @@
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 600px), (orientation: portrait) {
     .welcome-section {
       height: 90vh;
 

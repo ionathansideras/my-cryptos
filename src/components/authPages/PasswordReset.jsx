@@ -90,7 +90,7 @@ export default function PasswordReset() {
         </form>
         <div className="auth-navigate">
           <button onClick={() => navigate("/login")}>Go to Log In</button>
-          <button onClick={() => navigate("/register")}>Go to Sign Up</button>
+          <button onClick={() => navigate("/register")}>Go to Register</button>
         </div>
       </section>
     </main>
