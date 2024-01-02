@@ -67,9 +67,10 @@ export default function WelcomePage() {
       >
         <div className="section-one" ref={chartContainer}>
           <h2>
-            Unleash Your MyCryptos Adventure: Navigating the Waves of Digital
-            Wealth, Securing Your Financial Odyssey!
+            Unleash Your MyCryptos Adventure
           </h2>
+          <p>Navigating the Waves of Digital
+            Wealth, Securing Your Financial Odyssey!</p>
           <div className="section-buttons-container">
             <button onClick={() => navigate("/login")}>Log In</button>
             <button onClick={() => navigate("/register")}>Sign Up</button>
