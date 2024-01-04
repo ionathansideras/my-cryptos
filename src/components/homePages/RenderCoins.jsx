@@ -157,7 +157,7 @@ export default function RenderCoins({
                   <td
                     style={{
                       color:
-                        coin.percent_change_5min > coin.percent_change_15min
+                        coin.percent_change_15min < coin.percent_change_5min
                           ? "#39FF14"
                           : "#FF3131",
                     }}
