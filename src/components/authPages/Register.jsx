@@ -48,7 +48,8 @@ export default function Register() {
   useCheckUserLogedOut();
 
   // Function for handling user registration
-  async function handleRegister() {
+  async function handleRegister(e) {
+    e.preventDefault();
     if (password === passwordConfirm) {
       // If password and password confirmation match, create a new user with email and password
       try {

@@ -19,6 +19,10 @@ The My Cryptos project is a web application built using React, SCSS, Vite, and v
     - Authentication: Google provider, Email and Password
     - Database: Firestore
 
+- **Testing:**
+  - Unit Testing: vitest
+  - End-to-End Testing: Cypress
+
 ## Features 🌟
 
 ### 1. User Authentication 🔐
@@ -52,6 +56,10 @@ Various APIs are integrated into the application using Axios to fetch real-time 
 ### 8. File Structure and Code Organization 📂
 
 The project is structured to facilitate easy navigation and maintainability. Props, custom hooks, and other React best practices are employed to ensure a clean and organized codebase.
+
+## Testing 🧪
+
+The project uses `vitest` for unit testing and `Cypress` for end-to-end testing to ensure robust code quality and functionality.
 
 ## Getting Started 🚀
 
