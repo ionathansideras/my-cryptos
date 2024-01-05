@@ -78,7 +78,7 @@ export default function Home() {
             <img src={searchImg} alt="search"></img>
             <Search searchInput={searchInput} setSearchInput={setSearchInput} />
           </div>
-          <button onClick={() => setShowFilters((val) => !val)}>
+          <button className="filter-button" onClick={() => setShowFilters((val) => !val)}>
             <img src={filterImg} alt="filter" />
             Filters
           </button>

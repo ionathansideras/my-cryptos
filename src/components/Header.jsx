@@ -48,7 +48,7 @@ export default function Header() {
           onClick={animateSun}
           className="header-sun"
         />
-        <button ref={button} onClick={() => signOut(auth)}>
+        <button className="log-out-button" ref={button} onClick={() => signOut(auth)}>
           LogOut
         </button>
       </div>

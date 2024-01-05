@@ -9,9 +9,7 @@ describe('Login', () => {
   });
 
   it('should allow a user to log in', () => {
-    cy.get('input[type="email"]').type('bmckaibmc@gmail.com'); // type in the email
-    cy.get('input[type="password"]').type('1234567'); // type in the password
-    cy.get('.submit-button').click(); // click the login button
+    cy.login("bmckaibmc@gmail.com", "1234567");
 
     // check if the user is redirected to the home page
     cy.url().should('include', '/home');

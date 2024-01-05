@@ -114,7 +114,7 @@ export default function RenderCoins({
           {filterAndMapCoins(coins, searchInput).map(
             (coin, index) =>
               // Render a row for each coin, but only if the index is less than or equal to the limit
-              index <= limit && (
+              index < limit && (
                 <tr
                   // When a row is clicked, navigate to the coin page
                   onClick={(e) => handleNavigation(e, coin.coin_symbol)}

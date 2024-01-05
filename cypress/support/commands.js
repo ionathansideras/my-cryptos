@@ -9,9 +9,13 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
+Cypress.Commands.add("login", (email, password) => {
+  cy.visit("http://localhost:5173/my-cryptos/#/login"); // visit the login page
+
+  cy.get('input[type="email"]').type(email); // type in the email
+  cy.get('input[type="password"]').type(password); // type in the password
+  cy.get(".submit-button").click(); // click the login button
+});
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
