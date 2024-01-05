@@ -51,6 +51,7 @@ export default function WelcomePage() {
     // Clean up by removing the scroll event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleScroll)
     };
   }, []);
 
