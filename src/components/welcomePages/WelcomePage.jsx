@@ -57,7 +57,6 @@ export default function WelcomePage() {
   // JSX structure
   return (
     <main className="welcome-page-all">
-      <div className="welcome-background-svg"></div>
       {/* Section One - Welcome */}
       <section
         className="welcome-section"
