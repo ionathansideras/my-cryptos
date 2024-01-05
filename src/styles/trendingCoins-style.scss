@@ -18,8 +18,9 @@
 
     .trend-title {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
+      position: relative;
 
       h2 {
         margin: 2vh 0;
@@ -27,6 +28,8 @@
       }
 
       img {
+        position: absolute;
+        left: 0;
         border-radius: 100px;
         width: 2vw;
       }

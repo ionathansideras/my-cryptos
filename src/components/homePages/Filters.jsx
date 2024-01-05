@@ -30,8 +30,8 @@ export default function Filters({ coins, setCoins, coinsCopy, favorites, showFil
     { name: 'Sort price Increasing', handler: handleSortingByUsdPriseIncreasing },
     { name: 'Sort price Decreasing', handler: handleSortingByUsdPriseDecreasing },
     { name: 'Sort by name', handler: handleSortByName },
-    { name: 'Sort 24h Increasing', handler: handleSortByPriceChange5MinIncreasing },
-    { name: 'Sort 24h Decreasing', handler: handleSortByPriceChange5MinDecreasing },
+    { name: 'Sort 5min Increasing', handler: handleSortByPriceChange5MinIncreasing },
+    { name: 'Sort 5min Decreasing', handler: handleSortByPriceChange5MinDecreasing },
     { name: 'Sort by Favorites', handler: handleSortByFavorites },
     { name: 'Remove filters', handler: removeFilters },
   ];
