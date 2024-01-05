@@ -9,7 +9,7 @@ describe('Login', () => {
   });
 
   it('should allow a user to log in', () => {
-    cy.login("bmckaibmc@gmail.com", "1234567");
+    cy.login("iona8ansideras@gmail.com", "1234567");
 
     // check if the user is redirected to the home page
     cy.url().should('include', '/home');

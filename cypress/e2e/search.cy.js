@@ -1,7 +1,7 @@
 describe("Search Functionality", () => {
   it('should display only one result when "solana" is searched', () => {
     // visit the page and login
-    cy.login("bmckaibmc@gmail.com", "1234567");
+    cy.login("iona8ansideras@gmail.com", "1234567");
 
     // type "solana" in the search input
     cy.get(".inputSearch").type("solana");

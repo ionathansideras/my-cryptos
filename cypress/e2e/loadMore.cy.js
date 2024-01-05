@@ -1,6 +1,6 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.login("bmckaibmc@gmail.com", "1234567");
+    cy.login("iona8ansideras@gmail.com", "1234567");
 
     cy.get(".coins-body-table").children().should("have.length", 20);
 

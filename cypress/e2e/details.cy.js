@@ -1,7 +1,7 @@
 describe('template spec', () => {
   it('passes', () => {
     // visit the page and login
-    cy.login("bmckaibmc@gmail.com", "1234567");
+    cy.login("iona8ansideras@gmail.com", "1234567");
 
     // check if the table has only 20 child
     cy.get(".coins-body-table").children().should("have.length", 20);
