@@ -9,7 +9,7 @@ export default function MoveToTop() {
   const [showButton, setShowButton] = useState(false);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   useEffect(() => {
     const handleScroll = () => {

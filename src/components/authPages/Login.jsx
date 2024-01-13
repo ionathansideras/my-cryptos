@@ -33,7 +33,7 @@ export default function Login() {
   const [firebaseAuthError, setFirebaseAuthError] = useState(null);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   // useNavigate hook for navigating to different routes
   const navigate = useNavigate();

@@ -14,7 +14,8 @@ export default function Header() {
   const [rotation, setRotation] = useState(0);
   const sun = useRef(null);
 
-  const theme = useSelector((state) => state.theme.value);
+  const theme = useSelector((store) => store.theme);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

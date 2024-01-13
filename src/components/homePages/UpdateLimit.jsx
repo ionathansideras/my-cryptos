@@ -8,7 +8,7 @@ import { palette } from "../../data/colorPalette.js";
 // Receives the 'setLimit' function as a prop
 export default function UpdateLimit({ setLimit, limit, coins, searchInput, setLoading }) {
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
   // State variable to control the visibility of the "Load More" button
   const [showLoadMore, setShowLoadMore] = useState(true);
 

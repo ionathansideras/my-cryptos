@@ -3,6 +3,6 @@ import toggleThemes from "./toggleThemes.js";
 
 export const store = configureStore({
   reducer: {
-    theme: toggleThemes,
+    theme: toggleThemes.reducer,
   },
 });

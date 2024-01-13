@@ -13,6 +13,7 @@ import RenderLoading from "../RenderLoading.jsx";
 import { handlePercentChange } from "../../helpers/handlePercentChange.js";
 import { filterAndMapCoins } from "../../helpers/filterAndMapCoins.js";
 import { handleSrcStarChange } from "../../helpers/handleSrcStarChange.js";
+import { useMemo } from "react";
 
 // React component for rendering a list of coins
 // This component exports the RenderCoins function as the default export
@@ -24,7 +25,7 @@ export default function RenderCoins({
   favorites,
 }) {
   // Redux state hook for theme
-  const theme = useSelector((state) => state.theme.value);
+  const theme = useSelector((store) => store.theme);
 
   // Reference to the image element
   const imgSrc = useRef(null);
@@ -179,7 +180,7 @@ export default function RenderCoins({
   // Render the component
   return (
     <article className="all-coins">
-      {!coins ? <RenderLoading /> : <RenderCoinTable />}
+      {!coins ? <RenderLoading /> : RenderCoinTable()}
     </article>
   );
 }

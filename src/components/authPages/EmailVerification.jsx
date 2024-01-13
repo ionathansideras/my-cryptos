@@ -28,7 +28,7 @@ export default function EmailVerification() {
   const [showPassword, setShowPassword] = useState(false);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   // useNavigate hook from React Router is used for navigation between routes
   const navigate = useNavigate();

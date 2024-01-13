@@ -24,7 +24,7 @@ export default function PasswordReset() {
   const navigate = useNavigate();
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   // Custom hook to check if the user is already logged in
   useCheckUserLogedOut();

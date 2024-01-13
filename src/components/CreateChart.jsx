@@ -9,7 +9,7 @@ const CreateChart = ({ name, data, labels, fullChart }) => {
   const chartRef = useRef(null);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");

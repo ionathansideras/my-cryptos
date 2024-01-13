@@ -24,7 +24,7 @@ export default function CoinDetail() {
   const [coinDetails, setCoinDetails] = useState("");
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   const [favorites, setFavorites] = useState([]);
 

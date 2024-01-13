@@ -14,7 +14,7 @@ export default function WelcomePage() {
   const navigate = useNavigate();
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   // Ref for the chart container
   const chartContainer = useRef(null);

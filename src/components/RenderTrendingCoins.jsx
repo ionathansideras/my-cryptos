@@ -13,7 +13,7 @@ export default function RenderTrendingCoins() {
   const container = useRef(null);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   // Get the viewport width
   const viewportWidth = window.innerWidth;

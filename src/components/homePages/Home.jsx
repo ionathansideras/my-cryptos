@@ -37,7 +37,7 @@ export default function Home() {
   const [favorites, setFavorites] = useState([]);
 
   // Redux state hook for theme
-  const { value: theme } = useSelector((state) => state.theme);
+  const theme = useSelector((store) => store.theme);
 
   const [showFilters, setShowFilters] = useState(false);
 

@@ -3,7 +3,7 @@ import { palette } from "../data/colorPalette.js";
 
 // Function to render the loading section
 export default function RenderLoading() {
-  const theme = useSelector((state) => state.theme.value);
+  const theme = useSelector((store) => store.theme);
 
   return (
     <div
