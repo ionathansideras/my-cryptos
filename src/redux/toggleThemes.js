@@ -11,12 +11,13 @@ export const toggleThemes = createSlice({
     reducers: {
         // when we refer to state it refers to the current state of the reducer not the whole store
         changeTheme: (state) => {
-            // we need to save the new state in the local storage
-            setThemeColor(newState);
             // we need to return what we want to change the state to
             // if the store is dark we want to change it to return light and vice versa
             // because we don't directly mutate the state
-            return store === "dark" ? "light" : "dark";
+            const newState = state === "dark" ? "light" : "dark";
+            // we need to save the new state in the local storage
+            setThemeColor(newState);
+            return newState;
         },
     },
 });
